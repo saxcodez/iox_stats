@@ -15,7 +15,7 @@ Choose GitHub.com, HTTPS, and log in in the browser. Then, inside the project fo
 ```bash
 git init -b main
 git add .
-git commit -m "Release v0.8.0"
+git commit -m "Release v1.0.0"
 git remote add origin https://github.com/saxcodez/iox_stats.git
 git push -u origin main
 ```
@@ -25,9 +25,8 @@ pushes in one step (use `--private` to keep it private for now).
 
 ## Make it a community project
 
-1. Repository > **Settings > General**: add the description
-   "macOS system status in iOS widget style - menu bar, glass widgets, widget gallery" and the topics
-   `macos`, `widgets`, `menu-bar`, `system-monitor`, `python`, `swiftui`, `widgetkit`.
+1. Repository page > **About** (gear icon): description, topics and social preview from
+   [GITHUB_ABOUT.md](GITHUB_ABOUT.md).
 2. **Settings > General > Features**: turn on *Issues* (templates are in `.github/ISSUE_TEMPLATE`) and optionally
    *Discussions* for questions and ideas.
 3. **Settings > Actions > General**: allow actions, *Workflow permissions*: *Read and write* (the release workflow

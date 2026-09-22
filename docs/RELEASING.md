@@ -29,6 +29,6 @@ IOX Stats uses [Semantic Versioning](https://semver.org): `MAJOR.MINOR.PATCH`.
    git tag -a vX.Y.Z -m "IOX Stats vX.Y.Z"
    git push origin main --follow-tags
    ```
-5. The `Release` workflow checks that the tag matches the version, runs the tests, builds the macOS app and
+5. The `Release` workflow checks that the tag matches the version, runs the tests, builds the source package `IOX_Stats_vX.Y.Z.zip` and
    creates the GitHub Release with the text from `docs/release-notes/vX.Y.Z.md`.
 6. Source ZIP with the version in its name: `python scripts/package_zip.py` -> `dist/IOX_Stats_vX.Y.Z.zip`.

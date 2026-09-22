@@ -22,7 +22,7 @@ from ..collectors import Snapshot
 from ..layout import LayoutStore
 from ..metrics import METRICS, NA, OK
 from ..settings import MAX_TRAY_METRICS, TRAY_MODES, Settings
-from .theme import DARK, LIGHT, Theme, resolve_theme
+from .theme import DARK, LIGHT, PALETTES, Theme, resolve_theme, set_palette
 from .fonts import W_MEDIUM, W_SEMIBOLD, ui_font
 from .macos_status import create_status_item
 from .widget_menu import populate_widgets_menu
@@ -220,6 +220,20 @@ class TrayController:
             act.triggered.connect(lambda _c=False, key=key: self.set_theme(key))
             group.addAction(act)
             theme_menu.addAction(act)
+        theme_menu.addSeparator()
+        colors_label = QAction("Colors", theme_menu)
+        colors_label.setEnabled(False)
+        theme_menu.addAction(colors_label)
+        pal_group = QActionGroup(theme_menu)
+        pal_group.setExclusive(True)
+        self.palette_actions = {}
+        for key, label in PALETTES.items():
+            act = QAction(label, theme_menu, checkable=True)
+            act.setChecked(self.settings.palette == key)
+            act.triggered.connect(lambda _c=False, key=key: self.set_palette(key))
+            pal_group.addAction(act)
+            theme_menu.addAction(act)
+            self.palette_actions[key] = act
 
         self.menu.addSeparator()
         # Experimental floating window mode: only offered when the app wires it up (it does not by default -
@@ -374,6 +388,12 @@ class TrayController:
             self.autostart_action.setChecked(actual)
             self.autostart_action.blockSignals(False)
         return actual
+
+    def set_palette(self, key: str) -> None:
+        self.settings.palette = set_palette(key)
+        self.settings.save()
+        self.refresh(self._last_snap)
+        self._on_changed()
 
     def set_theme(self, key: str) -> None:
         self.settings.theme = key

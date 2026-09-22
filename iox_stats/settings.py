@@ -48,6 +48,7 @@ class Settings:
     share_with_widgets: bool = True   # macOS: write snapshot.json for the widget gallery widget
     desktop_mode: bool = False        # widgets sit on the desktop (frameless, behind other windows)
     window_pos: list = field(default_factory=list)   # [x, y] of the window / desktop widgets, empty = default
+    palette: str = "ios"         # colour palette: see ui/theme.PALETTES ("ios" = green like Apple's widgets)
     tray_mode: str = "two"     # "two" = two values side by side, "one" = a single value (see TRAY_MODES)
     start_hidden: bool = False  # start with no window, menu bar only (independent of autostart)
 
@@ -56,6 +57,8 @@ class Settings:
             self.theme = "system"
         if self.tray_style not in TRAY_STYLES:
             self.tray_style = "auto"
+        if self.palette not in ("ios", "colorful", "blue", "teal", "purple", "pink", "orange", "graphite"):
+            self.palette = "ios"
         if self.tray_mode not in TRAY_MODES:
             self.tray_mode = "two"
         self.interval_ms = int(min(10000, max(500, self.interval_ms)))

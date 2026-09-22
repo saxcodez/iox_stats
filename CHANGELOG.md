@@ -7,6 +7,92 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-09-23
+
+**First public release.** IOX Stats is tested end to end on a real Mac (macOS 26, Apple Silicon): menu bar app,
+glass widget window and the widget in the macOS widget gallery. No functional changes since 0.10.0.
+
+### Changed
+- Version 1.0.0: settings, CLI and the widget configuration are now considered stable (Semantic Versioning).
+- Releases publish the **source package** `IOX_Stats_vX.Y.Z.zip`; installation via `scripts/setup_macos.sh`,
+  `scripts/start_menubar.sh` and `scripts/install_widgets.sh`. The untested PyInstaller app build was removed from
+  the release workflow until the signed DMG is ready.
+- README, project status and roadmap updated for the release.
+
+## [0.10.0] - 2026-09-23
+
+**The widget works. Now: temperature without extra tools, a menu bar app that is always there, a finished
+widget app.**
+
+### Added
+- **Colours: iOS Green by default**, like Apple's Batteries widget - one green accent with neutral grey tracks.
+  Also *Colorful* (one colour per value, the old look) and single accents (Blue, Teal, Purple, Pink, Orange,
+  Graphite). Menu bar app: *Appearance > Colors*. Widget: *Edit Widget > Colors*. Orange / red warnings stay.
+- **Glass widget background** like Apple's own widgets (translucent system fill, the desktop shows through);
+  *Edit Widget > Background > Solid* brings back the opaque look.
+- README: *Vision* section (data macOS hides; planned AI usage & reset meter, time to home with live traffic,
+  device batteries, per-app network), ideas welcome. `docs/GITHUB_ABOUT.md` with the text for the repository page.
+- **CPU temperature without a helper on Apple Silicon:** reads Apple's IOHID temperature sensors directly
+  (`iox_stats/iohid_temp.py`). Used when neither `macmon` nor `osx-cpu-temp` is installed, and as automatic
+  fallback when the helper runs but delivers no value (e.g. a macOS / chip combination it does not support yet).
+  A crash-safe probe in a child process runs first.
+- `python -m iox_stats --diagnose`: shows helper, a raw `macmon` reading, the IOHID reading, the source the app
+  actually uses, the widget hand-over file and Launch at Login - paste it into an issue.
+- `scripts/start_menubar.sh`: starts the menu bar app now and at every login (managed by macOS), so the menu bar
+  readout, its settings and the widget's temperature are always available. CLI `--enable-login` /
+  `--disable-login`.
+- Widget app settings page: **Done** button (window closes, refreshing continues), **Quit Widget App**, the three
+  steps to add the widget, and a **Menu bar app** section - is it running, where its settings are, and a
+  **Copy Start Command** button when it is not running (from `launch.json`, written by the menu bar app).
+
+### Fixed
+- **Launch at Login did not start the menu bar app** from a source install: the LaunchAgent now sets the working
+  directory and `PYTHONPATH` to the project folder (`python -m iox_stats` could not find the package at login).
+- Temperature helper errors were silently discarded. `macmon` failures (exit code, stderr, first output line) and
+  `osx-cpu-temp` failures are logged, a helper that sends nothing usable for 12 s is stopped.
+
+## [0.9.1] - 2026-09-23
+
+**Fix: the widget was rejected by macOS because it was not sandboxed.**
+
+### Fixed
+- The widget never appeared in *Edit Widgets*. macOS logged `plug-ins must be sandboxed`: XcodeGen rewrites
+  the `.entitlements` files from `project.yml` on every `xcodegen generate`, and since `project.yml` only named
+  the files, it wrote them **empty** - the signed widget lost App Sandbox, network and file-read entitlements.
+  The entitlements are now defined as properties in `macos-widgets/project.yml` (single source of truth).
+- `install_widgets.sh` checks that the signed widget really has the App Sandbox entitlement and stops with a clear
+  message otherwise, and it also removes old build copies in other project folders (older ZIPs, git checkout).
+
+### Added
+- Regression test: `project.yml` entitlements must include App Sandbox and match the committed files.
+
+### Verified
+- Signing with the Apple ID team works (macOS 26.3.2, Apple Silicon); `widget_doctor.sh` pinpointed the cause.
+
+## [0.9.0] - 2026-09-23
+
+**Getting the widget into the gallery, and a host app that feels finished.**
+
+### Added
+- Widget host app: **Continue** button after the short guide, then a **settings page** - data source status
+  (menu bar app running? temperature coming in?), refresh interval (15 s / 30 s / 1 min / 5 min, saved),
+  *Refresh Now* with last request time, start at login, help (guide, Desktop & Dock settings, GitHub), version.
+- `scripts/widget_doctor.sh`: collects signatures, entitlements, pluginkit registrations, duplicate copies,
+  the desktop widget setting and the widget daemon's log lines into `macos-widgets/widget-doctor.txt`.
+
+### Changed
+- `scripts/install_widgets.sh` now **requires a signing team** (from Xcode's accounts or the Apple Development
+  certificate) and stops with clear steps if there is none - ad-hoc signed widgets are usually not listed by macOS.
+  `--adhoc` still forces the old behaviour. It removes stale test builds (DerivedData) and stale widget
+  registrations with the same id, keeps exactly one copy in `/Applications`, and prints team and signature.
+- Host app texts: "IOX Stats menu bar app" instead of "IOX Stats app"; the removed desktop widget mode is no longer
+  mentioned.
+- App and widget Info.plist carry the real version (`CFBundleShortVersionString` = `MARKETING_VERSION`).
+
+### Verified
+- `install_widgets.sh` (v0.8.0) builds, installs and opens the host app on macOS 26.3.2 / Apple Silicon.
+  The widget was not listed yet (ad-hoc fallback) - addressed above.
+
 ## [0.8.0] - 2026-09-22
 
 **Widget install for real, non-commercial license, a README worth reading.**
@@ -268,7 +354,11 @@ First tagged release: a working dashboard with iOS-style widgets and a live menu
 - macOS shows a Dock icon while running (menu-bar-only mode is planned).
 - No login-item / autostart option yet.
 
-[Unreleased]: https://github.com/saxcodez/iox_stats/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/saxcodez/iox_stats/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/saxcodez/iox_stats/compare/v0.10.0...v1.0.0
+[0.10.0]: https://github.com/saxcodez/iox_stats/compare/v0.9.1...v0.10.0
+[0.9.1]: https://github.com/saxcodez/iox_stats/compare/v0.9.0...v0.9.1
+[0.9.0]: https://github.com/saxcodez/iox_stats/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/saxcodez/iox_stats/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/saxcodez/iox_stats/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/saxcodez/iox_stats/compare/v0.5.0...v0.6.0

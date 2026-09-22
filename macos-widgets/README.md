@@ -86,7 +86,19 @@ Builds the app **signed** with your Apple ID team (found automatically), install
 Why this step exists: `build_widgets.sh` only proves that the code compiles. macOS lists a widget only when its
 app is **signed, installed and opened once** - an unsigned build in a build folder never appears in the gallery.
 
-No Apple ID in Xcode yet? *Xcode > Settings > Accounts > +* > Apple ID (free is fine). Then run the script again.
+**You need your Apple ID in Xcode** (*Xcode > Settings > Accounts > +* > Apple ID - a free one is fine). macOS
+only lists widgets from apps signed with a development team; without one the script stops and tells you what to do.
+It also removes old test-build copies with the same id, which macOS might otherwise pick instead.
+
+The app window then has a **Continue** button and a **settings page**: data source status (is the menu bar app
+running, is the temperature coming in), refresh interval (15 s - 5 min), *Refresh Now*, start at login, help.
+
+### Widget not in Edit Widgets?
+
+1. Apple ID added in Xcode, then `bash scripts/install_widgets.sh` again - it must say `RESULT: WIDGET REGISTERED`.
+2. *System Settings > Desktop & Dock > Widgets*: "Show Widgets" must include **On Desktop**.
+3. Log out and in once - the widget gallery sometimes only rereads new widgets then.
+4. Still missing: `bash scripts/widget_doctor.sh` and send `macos-widgets/widget-doctor.txt` (open an issue).
 
 ## Test build
 

@@ -9,9 +9,12 @@ struct StatsEntry: TimelineEntry {
     let style: WidgetStyle
     let kinds: [MetricKind]
     let snapshot: SystemSnapshot
+    var palette: WidgetPalette = .ios
+    var background: WidgetBackground = .glass
 
-    static func sample(style: WidgetStyle, kinds: [MetricKind]) -> StatsEntry {
-        StatsEntry(date: Date(), style: style, kinds: kinds, snapshot: .sample)
+    static func sample(style: WidgetStyle, kinds: [MetricKind], palette: WidgetPalette = .ios,
+                       background: WidgetBackground = .glass) -> StatsEntry {
+        StatsEntry(date: Date(), style: style, kinds: kinds, snapshot: .sample, palette: palette, background: background)
     }
 }
 
@@ -30,7 +33,8 @@ struct Provider: AppIntentTimelineProvider {
 
     func snapshot(for configuration: SystemStatsIntent, in context: Context) async -> StatsEntry {
         if context.isPreview {
-            return .sample(style: configuration.style, kinds: configuration.chosenKinds)
+            return .sample(style: configuration.style, kinds: configuration.chosenKinds,
+                           palette: configuration.palette, background: configuration.background)
         }
         return await makeEntry(for: configuration)
     }
@@ -50,7 +54,8 @@ struct Provider: AppIntentTimelineProvider {
         } else {
             snapshot = await SystemCollector.collect(needing: Set(kinds))
         }
-        return StatsEntry(date: Date(), style: configuration.style, kinds: kinds, snapshot: snapshot)
+        return StatsEntry(date: Date(), style: configuration.style, kinds: kinds, snapshot: snapshot,
+                          palette: configuration.palette, background: configuration.background)
     }
 }
 

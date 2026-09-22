@@ -31,12 +31,20 @@ def launch_command(frozen: Optional[bool] = None, executable: Optional[str] = No
     return base + [BACKGROUND_FLAG]
 
 
+def project_dir() -> Optional[Path]:
+    """Folder that contains the ``iox_stats`` package (needed for ``python -m iox_stats`` from a source checkout)."""
+    if getattr(sys, "frozen", False):
+        return None
+    return Path(__file__).resolve().parent.parent
+
+
 class Autostart:
     def __init__(self, platform: Optional[str] = None, home: Optional[Path] = None,
-                 command: Optional[List[str]] = None):
+                 command: Optional[List[str]] = None, workdir: Optional[Path] = None):
         self.platform = platform or sys.platform
         self.home = Path(home) if home else Path.home()
         self.command = command or launch_command()
+        self.workdir = workdir if workdir is not None else project_dir()
 
     # -- helpers -------------------------------------------------------------
     @property
@@ -63,13 +71,17 @@ class Autostart:
     def enable(self) -> bool:
         try:
             if self.platform == "darwin":
-                self._write(self.path, plistlib.dumps({
+                agent = {
                     "Label": APP_ID,
                     "ProgramArguments": self.command,
                     "RunAtLoad": True,
                     "ProcessType": "Interactive",
                     "LimitLoadToSessionType": "Aqua",
-                }))
+                }
+                if self.workdir is not None:     # source install: python -m iox_stats needs the project folder
+                    agent["WorkingDirectory"] = str(self.workdir)
+                    agent["EnvironmentVariables"] = {"PYTHONPATH": str(self.workdir)}
+                self._write(self.path, plistlib.dumps(agent))
             elif self.platform.startswith("linux"):
                 exec_line = " ".join(shlex.quote(c) for c in self.command)
                 text = ("[Desktop Entry]\nType=Application\n"

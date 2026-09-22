@@ -14,15 +14,31 @@ struct StatsWidgetView: View {
         Group {
             switch entry.style {
             case .rings:
-                RingsLayout(readings: readings)
+                RingsLayout(readings: readings, palette: entry.palette)
             case .bars:
-                BarsLayout(readings: readings)
+                BarsLayout(readings: readings, palette: entry.palette)
             case .numbers:
-                NumbersLayout(readings: readings, wide: family != .systemSmall)
+                NumbersLayout(readings: readings, wide: family != .systemSmall, palette: entry.palette)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .containerBackground(.background, for: .widget)
+        .modifier(WidgetBackgroundModifier(background: entry.background))
+    }
+}
+
+/// Glass = the translucent system fill Apple recommends for widgets (the desktop shows through, like the
+/// Batteries widget). Solid = the opaque window background.
+private struct WidgetBackgroundModifier: ViewModifier {
+    let background: WidgetBackground
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        switch background {
+        case .glass:
+            content.containerBackground(.fill.tertiary, for: .widget)
+        case .solid:
+            content.containerBackground(.background, for: .widget)
+        }
     }
 }
 
@@ -30,11 +46,12 @@ struct StatsWidgetView: View {
 
 private struct RingsLayout: View {
     let readings: [Reading]
+    let palette: WidgetPalette
 
     var body: some View {
         HStack(spacing: readings.count > 2 ? 10 : 16) {
             ForEach(readings) { reading in
-                RingView(reading: reading)
+                RingView(reading: reading, palette: palette)
             }
         }
     }
@@ -42,15 +59,16 @@ private struct RingsLayout: View {
 
 private struct RingView: View {
     let reading: Reading
+    let palette: WidgetPalette
 
     var body: some View {
         VStack(spacing: 6) {
             ZStack {
                 Circle()
-                    .stroke(reading.color.opacity(0.22), lineWidth: 9)
+                    .stroke(reading.track(in: palette), lineWidth: 9)
                 Circle()
                     .trim(from: 0, to: reading.fraction ?? 0)
-                    .stroke(reading.color, style: StrokeStyle(lineWidth: 9, lineCap: .round))
+                    .stroke(reading.color(in: palette), style: StrokeStyle(lineWidth: 9, lineCap: .round))
                     .rotationEffect(.degrees(-90))
                     .widgetAccentable()
                 VStack(spacing: 0) {
@@ -81,11 +99,12 @@ private struct RingView: View {
 
 private struct BarsLayout: View {
     let readings: [Reading]
+    let palette: WidgetPalette
 
     var body: some View {
         VStack(spacing: 9) {
             ForEach(readings) { reading in
-                BarRow(reading: reading)
+                BarRow(reading: reading, palette: palette)
             }
         }
     }
@@ -93,13 +112,14 @@ private struct BarsLayout: View {
 
 private struct BarRow: View {
     let reading: Reading
+    let palette: WidgetPalette
 
     var body: some View {
         VStack(spacing: 4) {
             HStack(spacing: 5) {
                 Image(systemName: reading.kind.symbol)
                     .font(.system(size: 11, weight: .semibold))
-                    .foregroundStyle(reading.color)
+                    .foregroundStyle(reading.color(in: palette))
                 Text(reading.kind.title)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundStyle(.secondary)
@@ -117,9 +137,9 @@ private struct BarRow: View {
             }
             GeometryReader { geo in
                 ZStack(alignment: .leading) {
-                    Capsule().fill(reading.color.opacity(0.22))
+                    Capsule().fill(reading.track(in: palette))
                     Capsule()
-                        .fill(reading.color)
+                        .fill(reading.color(in: palette))
                         .frame(width: max(6, geo.size.width * CGFloat(reading.fraction ?? 0)))
                         .widgetAccentable()
                 }
@@ -134,6 +154,7 @@ private struct BarRow: View {
 private struct NumbersLayout: View {
     let readings: [Reading]
     let wide: Bool
+    let palette: WidgetPalette
 
     var body: some View {
         let columns: [[Reading]] = (wide && readings.count > 3)
@@ -144,7 +165,7 @@ private struct NumbersLayout: View {
             ForEach(Array(columns.enumerated()), id: \.offset) { _, column in
                 VStack(spacing: 10) {
                     ForEach(column) { reading in
-                        NumberRow(reading: reading)
+                        NumberRow(reading: reading, palette: palette)
                     }
                 }
             }
@@ -154,6 +175,7 @@ private struct NumbersLayout: View {
 
 private struct NumberRow: View {
     let reading: Reading
+    let palette: WidgetPalette
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
@@ -165,7 +187,7 @@ private struct NumberRow: View {
             Text(reading.value)
                 .font(.system(size: 21, weight: .semibold, design: .rounded))
                 .monospacedDigit()
-                .foregroundStyle(reading.color)
+                .foregroundStyle(reading.color(in: palette))
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
             if !reading.unit.isEmpty {

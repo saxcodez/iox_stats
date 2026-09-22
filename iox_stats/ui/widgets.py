@@ -87,11 +87,19 @@ def draw_caption(p: QPainter, rect: QRectF, text: str, color: QColor, px: float 
 
 def draw_activity_ring(p: QPainter, rect: QRectF, fraction: float, color: QColor, width: float = 11,
                        show_progress: bool = True) -> None:
-    """Activity-ring: tinted track, gradient progress arc with round caps (starts at 12 o'clock)."""
+    """Activity ring: track, gradient progress arc with round caps (starts at 12 o'clock).
+
+    The track is neutral grey like Apple's Batteries widget; only the "Colorful" palette tints it.
+    """
+    from .theme import get_palette
+
     fraction = max(0.0, min(1.0, fraction))
     r = rect.adjusted(width / 2, width / 2, -width / 2, -width / 2)
-    track = QColor(color)
-    track.setAlpha(58)
+    if get_palette() == "colorful":
+        track = QColor(color)
+        track.setAlpha(58)
+    else:
+        track = QColor(142, 142, 147, 72)        # systemGray at low alpha: reads on light and dark glass
     pen = QPen(track, width)
     pen.setCapStyle(Qt.PenCapStyle.RoundCap)
     p.setPen(pen)
@@ -248,7 +256,7 @@ class BaseCard(QWidget):
 
     def color(self) -> QColor:
         """Accent while fine, orange / red when the value needs attention."""
-        return self.theme.level_color(self.level(), self.accent) if self.level() != NA else self.theme.color(self.accent)
+        return self.theme.level_color(self.level(), self.accent) if self.level() != NA else self.theme.accent(self.accent)
 
     # painting -----------------------------------------------------------
     def paintEvent(self, _event) -> None:  # noqa: N802 (Qt API)
@@ -259,7 +267,7 @@ class BaseCard(QWidget):
         vis = QRectF(0, 0, self.vis_w, self.vis_h)
         paint_glass_card(p, vis, self.theme, RADIUS)
         # header: icon + title (iOS widget style)
-        draw_icon(p, self.icon, QRectF(PAD, 12.5, 15, 15), self.theme.color(self.accent))
+        draw_icon(p, self.icon, QRectF(PAD, 12.5, 15, 15), self.theme.accent(self.accent))
         draw_caption(p, QRectF(PAD + 21, 11, self.vis_w - 2 * PAD - 21, 18), self.title, self.theme.label2,
                      px=TITLE, weight=W_SEMIBOLD)
         if self.snap is not None:
@@ -537,7 +545,7 @@ class MultiCard(BaseCard):
     # colours -------------------------------------------------------------
     def metric_color(self, m: Metric) -> QColor:
         lv = m.level(self.snap)
-        return self.theme.color(m.accent) if lv == NA else self.theme.level_color(lv, m.accent)
+        return self.theme.accent(m.accent) if lv == NA else self.theme.level_color(lv, m.accent)
 
     def value_color(self, m: Metric) -> QColor:
         lv = m.level(self.snap)
@@ -645,7 +653,7 @@ class MiniChartCard(BaseCard):
         series = self.hist.series(m.series) if (self.hist and m.series) else []
         lo, hi = chart_bounds(m, series)
         draw_area_chart(p, QRectF(area.left(), area.top() + 50, area.width() - 4, area.height() - 54), series,
-                        self.theme.color(m.accent) if m.level(self.snap) in (OK, NA) else self.color(), vmax=hi, vmin=lo)
+                        self.theme.accent(m.accent) if m.level(self.snap) in (OK, NA) else self.color(), vmax=hi, vmin=lo)
 
     def value_color_for(self, m: Metric) -> QColor:
         lv = m.level(self.snap)
@@ -668,7 +676,7 @@ class ChartCard(BaseCard):
         for i, mid in enumerate(self.ids):
             m = METRICS[mid]
             x = area.left() + i * (col_w + GAP)
-            color = self.theme.color(m.accent)
+            color = self.theme.accent(m.accent)
             lv = m.level(self.snap)
             if lv in (WARN, CRIT):
                 color = self.theme.level_color(lv, m.accent)

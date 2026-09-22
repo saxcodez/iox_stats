@@ -48,3 +48,19 @@ enum SharedSnapshotStore {
         return (age >= -5 && age <= maxAge) ? shared : nil
     }
 }
+
+/// How the menu bar app is started (written by it at every start, kept when it quits). Lets the widget app show
+/// a copyable start command while the menu bar app is not running.
+struct LaunchInfo: Decodable {
+    var command: String
+    var appVersion: String?
+    var projectDir: String?
+
+    static func load() -> LaunchInfo? {
+        guard let url = SharedSnapshotStore.fileURL()?.deletingLastPathComponent().appendingPathComponent("launch.json"),
+              let data = try? Data(contentsOf: url) else { return nil }
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try? decoder.decode(LaunchInfo.self, from: data)
+    }
+}

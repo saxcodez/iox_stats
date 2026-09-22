@@ -41,14 +41,19 @@ struct Reading: Identifiable {
 
     var id: String { kind.rawValue }
 
-    /// The colour: the metric's system colour, orange / red when it needs attention.
-    var color: Color {
+    /// The colour in a palette: the accent while fine, orange / red when it needs attention.
+    func color(in palette: WidgetPalette) -> Color {
         switch level {
-        case .ok: return kind.tint
+        case .ok: return palette.accent(for: kind.tint)
         case .warn: return .orange
         case .crit: return .red
         case .unavailable: return .gray
         }
+    }
+
+    /// Track behind rings and bars: neutral grey like Apple's widgets, tinted in the colourful palette.
+    func track(in palette: WidgetPalette) -> Color {
+        palette == .colorful ? color(in: palette).opacity(0.22) : Color.primary.opacity(0.14)
     }
 }
 

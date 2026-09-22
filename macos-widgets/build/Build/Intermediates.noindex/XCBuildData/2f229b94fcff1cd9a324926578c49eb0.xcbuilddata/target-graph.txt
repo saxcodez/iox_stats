@@ -1,4 +1,0 @@
-Target dependency graph (2 targets)
-Target 'IOXStats' in project 'IOXStats'
-➜ Explicit dependency on target 'IOXStatsWidgets' in project 'IOXStats'
-Target 'IOXStatsWidgets' in project 'IOXStats' (no dependencies)

@@ -1,0 +1,60 @@
+name: Release
+
+# Publish a release by pushing a tag, e.g.:  git tag v0.2.0 && git push origin v0.2.0
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update && sudo apt-get install -y libegl1 libgl1 libxkbcommon0 libdbus-1-3 libfontconfig1 libglib2.0-0
+      - run: python -m pip install -r requirements.txt pytest pyyaml
+      - name: Tag must match version, changelog and release notes
+        run: python scripts/check_version.py "${GITHUB_REF_NAME}"
+      - run: python -m pytest -q
+
+  package:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Source package IOX_Stats_vX.Y.Z.zip (the same package the scripts install from)
+        run: |
+          python scripts/package_zip.py
+          mkdir -p out && cp dist/IOX_Stats_v*.zip out/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package
+          path: out/*
+
+  publish:
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          name: package
+      - name: Create GitHub Release from docs/release-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          FLAGS=""
+          case "$TAG" in v0.*|*-*) FLAGS="--prerelease" ;; esac
+          gh release create "$TAG" out/* --title "IOX Stats $TAG" --notes-file "docs/release-notes/$TAG.md" $FLAGS

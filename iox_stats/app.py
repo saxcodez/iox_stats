@@ -87,6 +87,72 @@ def _install_helpers() -> int:
     return 0 if ok else 1
 
 
+def _diagnose() -> int:
+    """CLI: explain where every value comes from - especially the CPU temperature. Safe to paste into an issue."""
+    import platform
+
+    from . import helpers, iohid_temp
+    from .autostart import Autostart
+    from .share import snapshot_path
+    from .temperature import MacTempProvider, parse_macmon_line
+
+    print(f"{__app_name__} {__version__}  Python {platform.python_version()}  {sys.platform} {platform.machine()}")
+    if sys.platform == "darwin":
+        print(f"macOS {platform.mac_ver()[0]}")
+    st = helpers.status()
+    print(f"\n[temperature helper] {st.summary()}  path={st.path}  homebrew={st.brew}")
+    if st.tool == "macmon" and st.path:
+        import subprocess
+
+        try:
+            r = subprocess.run([st.path, "pipe", "-s", "1", "-i", "500"], capture_output=True, text=True, timeout=15)
+            line = (r.stdout or "").strip().splitlines()[:1]
+            print(f"  macmon exit={r.returncode} value={parse_macmon_line(line[0]) if line else None}")
+            print(f"  macmon output: {(line[0][:400] if line else '(none)')}")
+            if r.stderr.strip():
+                print(f"  macmon stderr: {r.stderr.strip()[-400:]}")
+        except Exception as exc:  # noqa: BLE001 - diagnostics must never crash
+            print(f"  macmon failed: {exc}")
+    if sys.platform == "darwin":
+        v = iohid_temp.probe()
+        print(f"\n[IOHID sensors, no helper needed] CPU temperature: {v if v is not None else 'not available'}")
+    if MacTempProvider.supported():
+        prov = MacTempProvider()
+        prov.start()
+        for _ in range(40):                 # up to 20 s: covers the helper timeout and the IOHID fallback
+            if prov.value is not None:
+                break
+            time.sleep(0.5)
+        print(f"\n[what the app uses] source={prov.tool} value={prov.value} error={prov.last_error}")
+        prov.stop()
+    else:
+        from .collectors import _cpu_temperature
+
+        print(f"\n[what the app uses] source=psutil value={_cpu_temperature()}")
+    snap_file = snapshot_path()
+    if snap_file.exists():
+        try:
+            data = json.loads(snap_file.read_text(encoding="utf-8"))
+            age = time.time() - float(data.get("timestamp", 0))
+            print(f"\n[widget hand-over] {snap_file}  age={age:.0f}s  temperature={data.get('temperature')}")
+        except (OSError, ValueError) as exc:
+            print(f"\n[widget hand-over] {snap_file} unreadable: {exc}")
+    else:
+        print(f"\n[widget hand-over] {snap_file} missing - the menu bar app is not running")
+    print(f"\n[launch at login] {'on' if Autostart().is_enabled() else 'off'}")
+    print(f"[log] {logging_setup.log_path()}")
+    return 0
+
+
+def _set_login(enabled: bool) -> int:
+    from .autostart import Autostart
+
+    auto = Autostart()
+    auto.set_enabled(enabled)
+    print(f"Launch at login: {'on' if auto.is_enabled() else 'off'}  ({auto.path})")
+    return 0 if auto.is_enabled() == enabled else 1
+
+
 def _print_once() -> int:
     c = Collector()
     c.sample()
@@ -146,7 +212,16 @@ def main(argv: Optional[List[str]] = None) -> int:
                         help="macOS: install the CPU temperature helper (macmon / osx-cpu-temp) via Homebrew and exit")
     parser.add_argument("--start-hidden", action="store_true", help="start with no window, menu bar only")
     parser.add_argument("--show-log", action="store_true", help="print the path to the log file and exit")
+    parser.add_argument("--diagnose", action="store_true",
+                        help="show where each value (especially the CPU temperature) comes from, and exit")
+    parser.add_argument("--enable-login", action="store_true", help="turn Launch at Login on and exit")
+    parser.add_argument("--disable-login", action="store_true", help="turn Launch at Login off and exit")
     args = parser.parse_args(argv)
+
+    if args.diagnose:
+        return _diagnose()
+    if args.enable_login or args.disable_login:
+        return _set_login(bool(args.enable_login))
 
     if args.show_log:
         from .logging_setup import log_path
@@ -163,6 +238,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         return _screenshot(args.screenshot, args.theme or "light", args.demo, args.layout)
 
     logger = logging_setup.setup()
+    if sys.platform == "darwin":
+        from .share import write_launch_info
+
+        write_launch_info()
 
     from PySide6.QtWidgets import QApplication
 
@@ -177,6 +256,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     settings = Settings.load()
     if args.theme:
         settings.theme = args.theme
+    from .ui.theme import set_palette
+
+    set_palette(settings.palette)
     if args.desktop:
         settings.desktop_mode = True
     if args.start_hidden:

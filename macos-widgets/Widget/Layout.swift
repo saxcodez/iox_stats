@@ -16,6 +16,49 @@ enum WidgetStyle: String, AppEnum {
     ]
 }
 
+/// Colours. `ios` = one green like Apple's Batteries widget, `colorful` = one colour per value.
+/// Orange / red for warnings stay in every palette.
+enum WidgetPalette: String, AppEnum {
+    case ios, colorful, blue, teal, purple, pink, orange, graphite
+
+    static let typeDisplayRepresentation: TypeDisplayRepresentation = "Colors"
+    static let caseDisplayRepresentations: [WidgetPalette: DisplayRepresentation] = [
+        .ios: "iOS Green",
+        .colorful: "Colorful",
+        .blue: "Blue",
+        .teal: "Teal",
+        .purple: "Purple",
+        .pink: "Pink",
+        .orange: "Orange",
+        .graphite: "Graphite",
+    ]
+
+    /// The accent for a value whose own colour is `natural`.
+    func accent(for natural: Color) -> Color {
+        switch self {
+        case .ios: return .green
+        case .colorful: return natural
+        case .blue: return .blue
+        case .teal: return .teal
+        case .purple: return .purple
+        case .pink: return .pink
+        case .orange: return .orange
+        case .graphite: return .gray
+        }
+    }
+}
+
+/// Widget background. `glass` = the translucent system fill Apple's own widgets use, `solid` = opaque.
+enum WidgetBackground: String, AppEnum {
+    case glass, solid
+
+    static let typeDisplayRepresentation: TypeDisplayRepresentation = "Background"
+    static let caseDisplayRepresentations: [WidgetBackground: DisplayRepresentation] = [
+        .glass: "Glass (like Apple's widgets)",
+        .solid: "Solid",
+    ]
+}
+
 /// A value a widget can show. `empty` means "leave this slot unused".
 enum MetricKind: String, AppEnum, CaseIterable {
     case empty, cpu, temperature, memory, swap, disk, ping, download, upload, battery, uptime, thermal
@@ -117,6 +160,12 @@ struct SystemStatsIntent: WidgetConfigurationIntent {
 
     @Parameter(title: "Display", default: .rings)
     var style: WidgetStyle
+
+    @Parameter(title: "Colors", default: .ios)
+    var palette: WidgetPalette
+
+    @Parameter(title: "Background", default: .glass)
+    var background: WidgetBackground
 
     @Parameter(title: "Value 1", default: .cpu)
     var metric1: MetricKind

@@ -12,7 +12,7 @@ and right in the macOS widget gallery.
 ![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-WidgetKit-F05138?logo=swift&logoColor=white)
 ![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-blue)
-![Status](https://img.shields.io/badge/status-pre--release-orange)
+![Version](https://img.shields.io/badge/version-1.0.0-34C759)
 
 </div>
 
@@ -29,9 +29,31 @@ and right in the macOS widget gallery.
 
 ## Why
 
+macOS knows a lot more about your machine than it shows you. CPU temperature, per-core load, real network
+throughput, swap pressure, latency - it is all there, but hidden behind private APIs, Terminal commands or
+Activity Monitor tabs nobody opens. **IOX Stats is an attempt to implement system stats on the Mac as well as
+possible** and to put exactly that hidden data where you actually look: the menu bar and your widgets.
+
 Activity Monitor is great for forensics, not for a glance. The menu bar tools out there are either ugly, closed or
 subscription-ware. IOX Stats wants to be the thing you would expect Apple to ship: native look, honest numbers,
 no account, no telemetry, no nonsense - and open for anyone to read, learn from and improve.
+
+## Vision - more than system stats
+
+System stats are the start. The idea behind IOX Stats is **a glanceable home for the numbers you keep checking**,
+in the menu bar and as native widgets. Planned and being explored:
+
+- 🤖 **AI usage meter** - token / message usage for Claude and other AI assistants: how much is left, **when the
+  limit resets**, as a menu bar value and as a widget.
+- 🚗 **Estimated time to home** - travel time with current traffic, so you know when to leave.
+- 🌡️ **Hidden hardware data** - fan speed, GPU load, power draw, SSD health, battery cycle count and health.
+- 🎧 **Connected devices** - battery of AirPods, Magic Mouse, keyboard in the same widget style.
+- 🌐 **Network insight** - which app is using the bandwidth right now, Wi-Fi signal and channel.
+- 🔔 **Smart alerts** - a quiet notification when something stays red (CPU hot for 5 minutes, disk almost full).
+
+**Got an idea? Want to build one of these?** Open an
+[idea / feature request](https://github.com/saxcodez/iox_stats/issues/new/choose) - every suggestion is read,
+and help with development is very welcome.
 
 ## Features
 
@@ -40,7 +62,8 @@ no account, no telemetry, no nonsense - and open for anyone to read, learn from 
 | **Menu bar readout** | Live every second. **2 values** side by side or **1 value**; pick up to 6, the rest rotate every 4 s so your other menu bar icons keep their place. Orange / red when things get hot, slow or full. |
 | **Glass widgets** | Continuous corners, iOS widget grid, San Francisco, Apple system colours, light & dark. Each widget: **rings**, **bars**, **numbers** or **detailed** - and you pick the values. |
 | **Widget gallery** | A native **WidgetKit** widget: right-click the desktop > *Edit Widgets* > *IOX Stats*. Fed with the app's live values, CPU temperature included. |
-| **CPU temperature** | Apple Silicon and Intel. One click installs the tiny sensor helper via Homebrew - no kernel extension, no `sudo`. |
+| **CPU temperature** | Apple Silicon: read straight from the SoC sensors - no tool, no driver, no `sudo`. Intel: one click installs a tiny helper via Homebrew. |
+| **Your colours** | **iOS Green** like Apple's Batteries widget (default), Colorful, or one accent of your choice - in the app and in *Edit Widget*. Glass background like Apple's own widgets. |
 | **Well-behaved** | Launch at Login and Start Hidden are opt-in. Log file for troubleshooting. Zero data collection - the only network traffic is the ping you can see. |
 
 ## How it works
@@ -49,7 +72,7 @@ no account, no telemetry, no nonsense - and open for anyone to read, learn from 
 flowchart LR
     subgraph mac[Your Mac]
         S[psutil<br/>CPU, RAM, disk, net] --> A
-        H[macmon / osx-cpu-temp<br/>temperature helper] --> A
+        H[SoC sensors / macmon /<br/>osx-cpu-temp: temperature] --> A
         P[TCP ping 1.1.1.1:443] --> A
         A[IOX Stats app<br/>Python + Qt] --> M[Menu bar item]
         A --> W[Glass widget window]
@@ -80,6 +103,12 @@ python -m iox_stats
 
 The setup script creates a virtual environment, installs the packages and offers to install the temperature
 helper. Paste commands one at a time - zsh chokes on `# comments` pasted after a command.
+
+Let the menu bar item start by itself at every login (recommended - it also feeds the widget):
+
+```bash
+bash scripts/start_menubar.sh
+```
 
 ### Widget gallery widget
 
@@ -124,6 +153,8 @@ python -m iox_stats --once              # one JSON snapshot to stdout
 python -m iox_stats --start-hidden      # menu bar only
 python -m iox_stats --install-helpers   # set up the CPU temperature helper
 python -m iox_stats --show-log          # where is the log?
+python -m iox_stats --diagnose          # where does each value come from (temperature!)
+python -m iox_stats --enable-login      # start at login (also: --disable-login)
 python -m iox_stats --screenshot out.png --theme dark --demo --layout rings
 ```
 
@@ -131,15 +162,15 @@ Settings: `~/Library/Application Support/IOXStats/settings.json` · Log: `~/Libr
 
 ## Project status
 
-Pre-release (`0.x`). What is verified on real hardware and what is still open is tracked openly in
+Version 1.0 - the first public release. What is verified on real hardware and what is still open is tracked openly in
 **[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)**. Every release: [CHANGELOG.md](CHANGELOG.md) and
 [release notes](docs/release-notes/).
 
 ## Roadmap
 
-**Towards 1.0**
-- Widget gallery widget confirmed on Apple Silicon and Intel
-- Downloadable **DMG**: signed app, temperature helper set up for you
+**Next (1.x)**
+- Downloadable **DMG**: one signed app, no Terminal, temperature set up for you
+- Test reports from Intel Macs and more Apple Silicon generations
 - Menu-bar-only app (no Dock icon)
 
 **After that**
@@ -149,7 +180,8 @@ Pre-release (`0.x`). What is verified on real hardware and what is still open is
 - Large widget, StandBy-style layouts
 - Localisation, German first
 
-Got an idea that fits? [Tell us.](https://github.com/saxcodez/iox_stats/issues/new/choose)
+**Ideas** (see [Vision](#vision---more-than-system-stats)): AI usage & reset meter, time to home with live
+traffic, device batteries, per-app network. Got another one? [Tell us.](https://github.com/saxcodez/iox_stats/issues/new/choose)
 
 ## Contributing & requests
 

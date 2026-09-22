@@ -17,13 +17,33 @@ final class RefreshDriver: ObservableObject {
     @Published private(set) var launchAtLogin = SMAppService.mainApp.status == .enabled
     @Published private(set) var loginError: String?
 
+    @Published private(set) var lastRefresh: Date?
+    @Published private(set) var launchInfo: LaunchInfo?
+
+    /// How often the app asks macOS to reload the widgets (seconds). Saved between launches.
+    static let intervalChoices = [15, 30, 60, 300]
+    private static let intervalKey = "refreshIntervalSeconds"
+    @Published var intervalSeconds: Int {
+        didSet {
+            UserDefaults.standard.set(intervalSeconds, forKey: Self.intervalKey)
+            if timer != nil {
+                stop()
+                start()
+            }
+        }
+    }
+
     private var timer: Timer?
-    static let interval: TimeInterval = 15
+
+    init() {
+        let saved = UserDefaults.standard.integer(forKey: Self.intervalKey)
+        intervalSeconds = Self.intervalChoices.contains(saved) ? saved : 15
+    }
 
     func start() {
         guard timer == nil else { return }
         tick()
-        timer = Timer.scheduledTimer(withTimeInterval: Self.interval, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(intervalSeconds), repeats: true) { [weak self] _ in
             Task { @MainActor in self?.tick() }
         }
     }
@@ -33,7 +53,13 @@ final class RefreshDriver: ObservableObject {
         timer = nil
     }
 
+    var menuBarAppRunning: Bool {
+        if case .pythonApp = source { return true }
+        return false
+    }
+
     func tick() {
+        launchInfo = LaunchInfo.load()
         if let shared = SharedSnapshotStore.loadFresh() {
             source = .pythonApp(age: max(0, Date().timeIntervalSince1970 - shared.timestamp),
                                 hasTemperature: shared.temperature != nil)
@@ -41,6 +67,7 @@ final class RefreshDriver: ObservableObject {
             source = .widgetOnly
         }
         WidgetCenter.shared.reloadAllTimelines()
+        lastRefresh = Date()
     }
 
     /// Opt-in: start this small app (and with it the refreshing) when the user logs in.

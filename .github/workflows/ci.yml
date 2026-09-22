@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]      # ubuntu: fast headless UI tests; macos: the real target
+        python: ["3.10", "3.12"]
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Qt system libraries (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libegl1 libgl1 libxkbcommon0 libdbus-1-3 libfontconfig1 libglib2.0-0
+      - run: python -m pip install -r requirements.txt pytest pyyaml
+      - name: Version / changelog / release notes consistency
+        run: python scripts/check_version.py
+      - run: python -m pytest -q
+
+  widgets:
+    # Compiles the Swift / WidgetKit project in macos-widgets/ (unsigned) - catches build errors early.
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen
+      - name: Generate the Xcode project
+        run: cd macos-widgets && xcodegen generate
+      - name: Build host app and widget extension
+        run: |
+          cd macos-widgets
+          xcodebuild -project IOXStats.xcodeproj -scheme IOXStats -configuration Debug \
+            -destination 'platform=macOS' CODE_SIGNING_ALLOWED=NO CODE_SIGN_IDENTITY="" build

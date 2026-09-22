@@ -39,7 +39,8 @@ def test_community_files_and_macos_only_workflows():
     assert lic.startswith("Required Notice: Copyright") and "saxcodez" in lic
     assert "PolyForm Noncommercial License 1.0.0" in lic
     for rel in ("CONTRIBUTING.md", ".github/ISSUE_TEMPLATE/bug_report.md", ".github/ISSUE_TEMPLATE/feature_request.md",
-                "scripts/build_widgets.sh", "scripts/install_widgets.sh", "docs/PROJECT_STATUS.md"):
+                "scripts/build_widgets.sh", "scripts/install_widgets.sh", "scripts/widget_doctor.sh", "scripts/start_menubar.sh",
+                "docs/PROJECT_STATUS.md"):
         assert (root / rel).is_file(), rel
     for wf in (".github/workflows/ci.yml", ".github/workflows/release.yml"):
         assert "windows" not in (root / wf).read_text(encoding="utf-8").lower(), wf

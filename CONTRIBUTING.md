@@ -10,12 +10,14 @@ Open an issue with the **Bug report** template and include:
 - macOS version and Mac (Apple Silicon or Intel)
 - what you did, what you expected, what happened
 - the log file: menu bar item > **Open Log Folder** > `iox_stats.log` (or `python -m iox_stats --show-log`)
-- for the widget gallery widget: `macos-widgets/widget-install.log` from `bash scripts/install_widgets.sh`
+- for temperature problems: the output of `python -m iox_stats --diagnose`
+- for the widget gallery widget: `macos-widgets/widget-install.log` from `bash scripts/install_widgets.sh` and
+  `macos-widgets/widget-doctor.txt` from `bash scripts/widget_doctor.sh`
 
-## Suggest a feature
+## Suggest a feature or an idea
 
-Open an issue with the **Feature request** template. Check the roadmap in the README first - maybe it is planned
-and you want to pick it up.
+Open an issue with the **Feature request** template. Bigger ideas are welcome too - the README's *Vision*
+section lists some (AI usage meter, time to home, device batteries). Maybe it is planned and you want to pick it up.
 
 ## Send code
 

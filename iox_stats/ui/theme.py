@@ -20,6 +20,43 @@ def _c(r: int, g: int, b: int, a: int = 255) -> QColor:
     return QColor(r, g, b, a)
 
 
+# Colour palettes. "ios" = one green accent like Apple's Batteries widget, "colorful" = one colour per metric,
+# the others = one accent of your choice. Orange / red for warnings stay in every palette.
+PALETTES = {
+    "ios": "iOS Green",
+    "colorful": "Colorful",
+    "blue": "Blue",
+    "teal": "Teal",
+    "purple": "Purple",
+    "pink": "Pink",
+    "orange": "Orange",
+    "graphite": "Graphite",
+}
+DEFAULT_PALETTE = "ios"
+_palette = DEFAULT_PALETTE
+
+
+def set_palette(name: str) -> str:
+    global _palette
+    _palette = name if name in PALETTES else DEFAULT_PALETTE
+    return _palette
+
+
+def get_palette() -> str:
+    return _palette
+
+
+def accent_name(natural: str) -> str:
+    """The accent actually drawn for a metric whose own colour is ``natural``."""
+    if _palette == "colorful":
+        return natural
+    if _palette == "ios":
+        return "green"
+    if _palette == "graphite":
+        return "gray"
+    return _palette
+
+
 @dataclass(frozen=True)
 class Theme:
     name: str
@@ -46,6 +83,10 @@ class Theme:
     def color(self, name: str) -> QColor:
         return QColor(self.colors.get(name, self.colors["blue"]))
 
+    def accent(self, natural: str) -> QColor:
+        """Metric accent after applying the colour palette."""
+        return self.color(accent_name(natural))
+
     def level_color(self, level: str, accent: str = "blue") -> QColor:
         """Accent while everything is fine, system orange / red when it needs attention."""
         if level == WARN:
@@ -54,7 +95,7 @@ class Theme:
             return self.color("red")
         if level == NA:
             return QColor(self.label2)
-        return self.color(accent)
+        return self.accent(accent)
 
 
 LIGHT = Theme(

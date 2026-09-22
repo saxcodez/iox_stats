@@ -99,3 +99,35 @@ class SnapshotWriter:
 def enabled_by_default() -> bool:
     """Only macOS has the widget; other systems do not need the file."""
     return sys.platform == "darwin" or bool(os.environ.get("IOX_STATS_SHARE"))
+
+
+LAUNCH_NAME = "launch.json"
+
+
+def launch_info_path() -> Path:
+    return config_dir() / LAUNCH_NAME
+
+
+def write_launch_info(path: Optional[Path] = None) -> bool:
+    """Tell the widget host app how the menu bar app is started (shown there as a copyable command).
+
+    Kept on quit (unlike snapshot.json), so the widget app can offer the command while the menu bar app is closed.
+    """
+    import shlex
+
+    from .autostart import project_dir
+
+    target = path or launch_info_path()
+    proj = project_dir()
+    if getattr(sys, "frozen", False) or proj is None:
+        command = shlex.quote(sys.executable)
+    else:
+        command = f"cd {shlex.quote(str(proj))} && {shlex.quote(sys.executable)} -m iox_stats"
+    data = {"schema": 1, "app_version": __version__, "command": command,
+            "project_dir": str(proj) if proj else None}
+    try:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps(data, indent=2), encoding="utf-8")
+        return True
+    except OSError:
+        return False
