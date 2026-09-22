@@ -128,16 +128,18 @@ def test_tray_menu_limits_and_persistence(qapp, snap):
     changed = []
     tray = TrayController(settings, lambda: None, lambda: changed.append(1), lambda: None,
                           autostart=_FakeAutostart())
-    # add a 4th -> ok
-    tray.metric_actions["ram"].setChecked(True)
-    assert settings.tray_metrics == ["cpu", "temp", "ping", "ram"] and len(settings.tray_metrics) == MAX_TRAY_METRICS
-    # 5th is refused and the checkbox reverts
-    tray.metric_actions["disk"].setChecked(True)
-    assert "disk" not in settings.tray_metrics and not tray.metric_actions["disk"].isChecked()
+    # fill up to the limit -> ok
+    for mid in ["ram", "disk", "swap"]:
+        tray.metric_actions[mid].setChecked(True)
+    assert settings.tray_metrics == ["cpu", "temp", "ping", "ram", "disk", "swap"]
+    assert len(settings.tray_metrics) == MAX_TRAY_METRICS
+    # one more is refused and the checkbox reverts
+    tray.metric_actions["battery"].setChecked(True)
+    assert "battery" not in settings.tray_metrics and not tray.metric_actions["battery"].isChecked()
     # persisted to disk
-    assert Settings.load().tray_metrics == ["cpu", "temp", "ping", "ram"]
+    assert Settings.load().tray_metrics == ["cpu", "temp", "ping", "ram", "disk", "swap"]
     # cannot remove the last value
-    for mid in ["temp", "ping", "ram"]:
+    for mid in ["temp", "ping", "ram", "disk", "swap"]:
         tray.metric_actions[mid].setChecked(False)
     tray.metric_actions["cpu"].setChecked(False)
     assert settings.tray_metrics == ["cpu"] and tray.metric_actions["cpu"].isChecked()

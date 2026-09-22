@@ -11,7 +11,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    MARKETING_VERSION: "0.5.0"          # keep equal to iox_stats.__version__ (checked by scripts/check_version.py)
+    MARKETING_VERSION: "0.6.0"          # keep equal to iox_stats.__version__ (checked by scripts/check_version.py)
     CURRENT_PROJECT_VERSION: "1"
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: ""                # set your team in Xcode (Signing & Capabilities) or put the team ID here

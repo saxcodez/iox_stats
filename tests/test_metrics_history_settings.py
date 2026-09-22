@@ -52,7 +52,7 @@ def test_settings_roundtrip_and_sanitize(tmp_path):
     loaded = Settings.load(path)
     assert loaded.theme == "dark"
     assert loaded.interval_ms == 500  # clamped
-    assert loaded.tray_metrics == ["ram", "cpu", "temp", "ping"]  # unknown dropped, max 4
+    assert loaded.tray_metrics == ["ram", "cpu", "temp", "ping", "disk"]  # unknown dropped, max 6
 
 
 def test_settings_corrupt_or_missing_file(tmp_path):

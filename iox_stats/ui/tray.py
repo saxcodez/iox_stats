@@ -11,22 +11,24 @@ import sys
 from typing import Callable, List, Optional, Tuple
 
 from PySide6.QtCore import QPoint, QRectF, QTimer, Qt
-from PySide6.QtGui import QAction, QActionGroup, QCursor, QFontMetrics, QGuiApplication, QIcon, QPainter, QPixmap
+from PySide6.QtGui import (QAction, QActionGroup, QCursor, QDesktopServices, QFontMetrics, QGuiApplication, QIcon,
+                           QPainter, QPixmap)
+from PySide6.QtCore import QUrl
 from PySide6.QtWidgets import QMenu, QSystemTrayIcon
 
-from .. import __app_name__, __version__
+from .. import __app_name__, __github_url__, __version__
 from ..autostart import Autostart
 from ..collectors import Snapshot
 from ..layout import LayoutStore
 from ..metrics import METRICS, NA, OK
-from ..settings import Settings
+from ..settings import MAX_TRAY_METRICS, Settings
 from .theme import DARK, LIGHT, Theme, resolve_theme
 from .fonts import W_MEDIUM, W_SEMIBOLD, ui_font
 from .macos_status import create_status_item
 from .widget_menu import populate_widgets_menu
 from .widgets import draw_activity_ring
 
-MAX_TRAY_METRICS = 4
+ROTATE_INTERVAL_MS = 4000   # how long one value stays visible when rotation is on
 _SCALE = 2  # render @2x for crisp menu bar text
 
 
@@ -131,8 +133,14 @@ class TrayController:
         self.icon = QSystemTrayIcon()
         self.menu = QMenu()
         self.metric_actions = {}
+        self._rotate_index = 0
+        self._rotate_timer = QTimer()
+        self._rotate_timer.setInterval(ROTATE_INTERVAL_MS)
+        self._rotate_timer.timeout.connect(self._rotate_tick)
         self._build_menu(on_quit)
         self._last_snap = Snapshot()
+        if self.settings.tray_rotate:
+            self._rotate_timer.start()
 
         # macOS: a native status item shows real, readable text. Qt's tray icon would squeeze it into a square.
         self.native = None
@@ -140,11 +148,11 @@ class TrayController:
             self.native = native_factory(self._show_menu)
         self.available = self.native is not None or QSystemTrayIcon.isSystemTrayAvailable()
         if self.native is not None:
-            self.native.set_segments(tray_segments(self._last_snap, settings.tray_metrics))
+            self.native.set_segments(tray_segments(self._last_snap, self._display_ids()))
         else:
             self.icon.setContextMenu(self.menu)
             self.icon.activated.connect(self._activated)
-            self.icon.setIcon(QIcon(render_tray_pixmap(self._last_snap, settings.tray_metrics,
+            self.icon.setIcon(QIcon(render_tray_pixmap(self._last_snap, self._display_ids(),
                                                        resolve_theme(settings.theme), self._pixmap_style())))
 
     def _pixmap_style(self) -> str:
@@ -181,6 +189,13 @@ class TrayController:
             act.toggled.connect(lambda checked, mid=mid: self.set_metric_enabled(mid, checked))
             sub.addAction(act)
             self.metric_actions[mid] = act
+        sub.addSeparator()
+        self.rotate_action = QAction("Rotate through the values", sub, checkable=True)
+        self.rotate_action.setChecked(self.settings.tray_rotate)
+        self.rotate_action.setToolTip("Show one value at a time, cycling every few seconds - takes less "
+                                      "space next to your other menu bar icons.")
+        self.rotate_action.toggled.connect(self.set_rotate)
+        sub.addAction(self.rotate_action)
 
         if self.store is not None:
             self.widgets_menu = self.menu.addMenu("Widgets")
@@ -220,10 +235,46 @@ class TrayController:
         self.autostart_action.toggled.connect(self.set_autostart)
         self.menu.addAction(self.autostart_action)
 
+        self.start_hidden_action = QAction("Start Hidden (menu bar only)", self.menu, checkable=True)
+        self.start_hidden_action.setChecked(self.settings.start_hidden)
+        self.start_hidden_action.setToolTip("Next time IOX Stats starts, open only the menu bar item, "
+                                            "no window - independent of Launch at Login.")
+        self.start_hidden_action.toggled.connect(self.set_start_hidden)
+        self.menu.addAction(self.start_hidden_action)
+
+        self.menu.addSeparator()
+        about_act = QAction("About IOX Stats", self.menu)
+        about_act.triggered.connect(self.show_about)
+        self.menu.addAction(about_act)
+        log_act = QAction("Open Log Folder", self.menu)
+        log_act.triggered.connect(self.open_log_folder)
+        self.menu.addAction(log_act)
+
         self.menu.addSeparator()
         quit_act = QAction("Quit IOX Stats", self.menu)
         quit_act.triggered.connect(on_quit)
         self.menu.addAction(quit_act)
+
+    def _display_ids(self) -> List[str]:
+        """Menu bar ids to actually draw: one, rotating, or all of them side by side."""
+        ids = self.settings.tray_metrics
+        if self.settings.tray_rotate and len(ids) > 1:
+            return [ids[self._rotate_index % len(ids)]]
+        return ids
+
+    def _rotate_tick(self) -> None:
+        self._rotate_index += 1
+        self.refresh(self._last_snap)
+
+    def set_rotate(self, enabled: bool) -> None:
+        self.settings.tray_rotate = enabled
+        self.settings.save()
+        self._rotate_index = 0
+        if enabled:
+            self._rotate_timer.start()
+        else:
+            self._rotate_timer.stop()
+        self.refresh(self._last_snap)
 
     def set_metric_enabled(self, mid: str, enabled: bool) -> None:
         cur = list(self.settings.tray_metrics)
@@ -267,6 +318,33 @@ class TrayController:
         self.helper_setup.run()
         self.refresh_helper_action()
 
+    def set_start_hidden(self, enabled: bool) -> None:
+        self.settings.start_hidden = bool(enabled)
+        self.settings.save()
+
+    def show_about(self) -> None:
+        from PySide6.QtWidgets import QMessageBox
+
+        box = QMessageBox(QMessageBox.Icon.NoIcon, f"About {__app_name__}",
+                          f"{__app_name__} {__version__}", QMessageBox.StandardButton.Close)
+        box.setInformativeText(
+            "System status widgets in iOS style, with a live menu bar readout and a native macOS "
+            "widget gallery widget.\n\n"
+            "Provided as-is, without warranty of any kind. IOX Stats reads local system metrics only; "
+            "it does not collect or transmit any data.\n\n"
+            f"{__github_url__}")
+        open_btn = box.addButton("Open GitHub Page", QMessageBox.ButtonRole.ActionRole)
+        box.exec()
+        if box.clickedButton() is open_btn:
+            QDesktopServices.openUrl(QUrl(__github_url__))
+
+    def open_log_folder(self) -> None:
+        from ..logging_setup import log_dir
+
+        d = log_dir()
+        d.mkdir(parents=True, exist_ok=True)
+        QDesktopServices.openUrl(QUrl.fromLocalFile(str(d)))
+
     def set_autostart(self, enabled: bool) -> bool:
         """Toggle launch at login; the checkbox always reflects the real state afterwards."""
         self.autostart.set_enabled(enabled)
@@ -290,14 +368,14 @@ class TrayController:
     def refresh(self, snap: Snapshot) -> None:
         self._last_snap = snap
         theme = resolve_theme(self.settings.theme)
-        ids = self.settings.tray_metrics
         from ..metrics import tray_text
-        tip = "IOX Stats\n" + tray_text(snap, ids, sep="\n")
+        tip = "IOX Stats\n" + tray_text(snap, self.settings.tray_metrics, sep="\n")   # tooltip: always all of them
+        shown = self._display_ids()
         if self.native is not None:
-            self.native.set_segments(tray_segments(snap, ids))
+            self.native.set_segments(tray_segments(snap, shown))
             self.native.set_tooltip(tip)
         else:
-            self.icon.setIcon(QIcon(render_tray_pixmap(snap, ids, theme, self._pixmap_style())))
+            self.icon.setIcon(QIcon(render_tray_pixmap(snap, shown, theme, self._pixmap_style())))
         self.icon.setToolTip(tip)
 
     def show(self) -> None:
@@ -305,6 +383,7 @@ class TrayController:
             self.icon.show()
 
     def remove(self) -> None:
+        self._rotate_timer.stop()
         if self.native is not None:
             self.native.remove()
         self.icon.hide()

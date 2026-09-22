@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-22
+
+**Menu bar rotation, logging, and the first pieces for a real release.**
+
+### Added
+- **Menu bar rotation** (on by default): instead of cramming several values side by side (which could push
+  other menu bar icons out, e.g. the Weather icon), IOX Stats now shows one value at a time and rotates
+  through the selected ones every 4 seconds. Up to 6 values can be selected (was 4). Turn it off in the
+  menu ("Rotate through the values") to go back to showing them all at once.
+- **Log file** for diagnostics: `<config folder>/logs/iox_stats.log` (rotated, max 5 MB total), captures
+  startup, the temperature helper install, and uncaught errors. Menu item **Open Log Folder**, CLI
+  `--show-log` prints its path.
+- **About IOX Stats** dialog (version, short disclaimer, link to the GitHub page).
+- **Start Hidden** menu checkbox / `--start-hidden`: start with no window, menu bar only - independent of
+  Launch at Login (which controls whether IOX Stats starts automatically at all).
+
+### Changed
+- `MAX_TRAY_METRICS` raised from 4 to 6 (rotation makes more values practical without crowding the menu bar).
+
+### Known limitations
+- Menu bar rotation, the log file location and the About dialog are not yet verified on a real Mac.
+- The macOS gallery widget (`macos-widgets/`) is still unverified on real hardware (see v0.4.0 / v0.5.0 notes).
+
 ## [0.5.0] - 2026-09-20
 
 **Live data for the widgets and a working CPU temperature.**
@@ -201,7 +224,8 @@ First tagged release: a working dashboard with iOS-style widgets and a live menu
 - macOS shows a Dock icon while running (menu-bar-only mode is planned).
 - No login-item / autostart option yet.
 
-[Unreleased]: https://github.com/OWNER/IOX_Stats/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/OWNER/IOX_Stats/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/OWNER/IOX_Stats/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/OWNER/IOX_Stats/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/OWNER/IOX_Stats/compare/v0.3.1...v0.4.0
 [0.3.1]: https://github.com/OWNER/IOX_Stats/compare/v0.3.0...v0.3.1

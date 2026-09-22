@@ -15,6 +15,7 @@ from .history import History
 from .layout import PRESETS, LayoutStore
 from .settings import Settings
 from .share import SnapshotWriter, enabled_by_default
+from . import logging_setup
 
 
 class Controller:
@@ -65,7 +66,9 @@ def _install_helpers() -> int:
     """CLI: show the temperature helper status and install it (macOS, needs Homebrew, no admin password)."""
     from . import helpers
 
+    logger = logging_setup.setup()
     st = helpers.status()
+    logger.info("helper status: %s", st.summary())
     print(st.summary())
     if not st.supported:
         print("Nothing to do: this system has built-in sensors or needs no helper.")
@@ -80,6 +83,7 @@ def _install_helpers() -> int:
     print(f"Installing {st.recommended} with Homebrew ...")
     ok, msg = helpers.run_install(st)
     print(msg)
+    (logger.info if ok else logger.error)("helper install: %s", msg)
     return 0 if ok else 1
 
 
@@ -140,7 +144,15 @@ def main(argv: Optional[List[str]] = None) -> int:
                         help="start in desktop widget mode (frameless glass widgets behind your windows)")
     parser.add_argument("--install-helpers", action="store_true",
                         help="macOS: install the CPU temperature helper (macmon / osx-cpu-temp) via Homebrew and exit")
+    parser.add_argument("--start-hidden", action="store_true", help="start with no window, menu bar only")
+    parser.add_argument("--show-log", action="store_true", help="print the path to the log file and exit")
     args = parser.parse_args(argv)
+
+    if args.show_log:
+        from .logging_setup import log_path
+
+        print(log_path())
+        return 0
 
     if args.install_helpers:
         return _install_helpers()
@@ -149,6 +161,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return _print_once()
     if args.screenshot:
         return _screenshot(args.screenshot, args.theme or "light", args.demo, args.layout)
+
+    logger = logging_setup.setup()
 
     from PySide6.QtWidgets import QApplication
 
@@ -165,6 +179,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         settings.theme = args.theme
     if args.desktop:
         settings.desktop_mode = True
+    if args.start_hidden:
+        settings.start_hidden = True
 
     from .ui.helper_ui import HelperSetup
 
@@ -206,11 +222,13 @@ def main(argv: Optional[List[str]] = None) -> int:
     ctrl = Controller(settings, dash, tray, writer)
     holder["ctrl"] = ctrl
     ctrl.start()
-    if not (args.background and tray is not None):     # background start: menu bar only
+    stay_hidden = args.background or settings.start_hidden
+    if not (stay_hidden and tray is not None):     # background / start-hidden: menu bar only
         dash.show()
     app.aboutToQuit.connect(ctrl.stop)
     if tray is not None:
         _first_run_questions(settings, tray, dash, helper_setup)
+    logger.info("started (tray=%s, desktop_mode=%s, hidden=%s)", tray is not None, settings.desktop_mode, stay_hidden)
     return app.exec()
 
 

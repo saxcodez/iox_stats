@@ -14,6 +14,7 @@ from .metrics import DEFAULT_TRAY, METRICS
 
 THEMES = ("system", "light", "dark")
 TRAY_STYLES = ("auto", "text", "compact")
+MAX_TRAY_METRICS = 6
 
 
 def config_dir() -> Path:
@@ -45,6 +46,8 @@ class Settings:
     share_with_widgets: bool = True   # macOS: write snapshot.json for the widget gallery widget
     desktop_mode: bool = False        # widgets sit on the desktop (frameless, behind other windows)
     window_pos: list = field(default_factory=list)   # [x, y] of the window / desktop widgets, empty = default
+    tray_rotate: bool = True   # show one menu bar value at a time, cycling - saves space next to other menu bar icons
+    start_hidden: bool = False  # start with no window, menu bar only (independent of autostart)
 
     def sanitize(self) -> "Settings":
         if self.theme not in THEMES:
@@ -52,7 +55,7 @@ class Settings:
         if self.tray_style not in TRAY_STYLES:
             self.tray_style = "auto"
         self.interval_ms = int(min(10000, max(500, self.interval_ms)))
-        self.tray_metrics = [m for m in self.tray_metrics if m in METRICS][:4] or list(DEFAULT_TRAY)
+        self.tray_metrics = [m for m in self.tray_metrics if m in METRICS][:MAX_TRAY_METRICS] or list(DEFAULT_TRAY)
         self.ping_port = int(min(65535, max(1, self.ping_port)))
         self.widgets = layout_to_raw(sanitize_layout(self.widgets))
         pos = self.window_pos

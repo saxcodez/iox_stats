@@ -54,7 +54,15 @@ python -m iox_stats
 ```
 
 Windows / Linux: click the tray icon to show or hide the dashboard. macOS: click the menu bar item and
-choose "Show Dashboard". The menu also lets you choose the menu bar values, the appearance and quit.
+choose "Show Dashboard". The menu also lets you choose the menu bar values, the appearance, **About IOX Stats**
+and **Open Log Folder** (for diagnostics), and quit.
+
+### Menu bar values
+
+Pick up to 6 values in the menu. By default IOX Stats shows **one value at a time and rotates** through your
+selection every 4 seconds - this keeps the menu bar item narrow so it does not crowd out your other menu bar
+icons (Wi-Fi, Battery, Weather, ...). Turn "Rotate through the values" off in the same submenu to show them all
+side by side instead. Hovering the item always shows every selected value in the tooltip, whichever mode you use.
 
 ### One-shot setup (macOS)
 
@@ -129,6 +137,8 @@ python -m iox_stats --no-tray --theme light
 python -m iox_stats --background                            # menu bar only, no window (what autostart uses)
 python -m iox_stats --desktop                               # start in Desktop Widget Mode
 python -m iox_stats --install-helpers                       # macOS: set up the CPU temperature helper
+python -m iox_stats --start-hidden                           # start with no window (like the menu checkbox)
+python -m iox_stats --show-log                              # print the path to the log file
 ```
 
 Settings live in `settings.json` in your config folder (macOS: `~/Library/Application Support/IOXStats`,

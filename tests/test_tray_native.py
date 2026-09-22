@@ -38,8 +38,9 @@ class _Auto:
 
 
 def _tray(settings=None, factory=FakeNative, **kw):
-    return TrayController(settings or Settings(tray_metrics=["cpu", "temp", "ping"]), lambda: None, lambda: None,
-                          lambda: None, autostart=_Auto(), native_factory=factory, **kw)
+    return TrayController(settings or Settings(tray_metrics=["cpu", "temp", "ping"], tray_rotate=False),
+                          lambda: None, lambda: None, lambda: None, autostart=_Auto(),
+                          native_factory=factory, **kw)
 
 
 def test_segments_carry_label_value_and_level(snap):
@@ -62,7 +63,7 @@ def test_native_item_gets_live_text_instead_of_a_pixmap(qapp, snap):
 
 
 def test_native_item_follows_menu_selection(qapp, snap):
-    settings = Settings(tray_metrics=["cpu"])
+    settings = Settings(tray_metrics=["cpu"], tray_rotate=False)
     tray = _tray(settings)
     tray.metric_actions["ram"].setChecked(True)
     tray.metric_actions["temp"].setChecked(True)
