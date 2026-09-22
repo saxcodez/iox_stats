@@ -141,7 +141,7 @@ def main(argv: Optional[List[str]] = None) -> int:
                         help="start quietly in the menu bar / tray without opening the dashboard (used by autostart)")
     parser.add_argument("--no-tray", action="store_true", help="do not create a menu bar / tray icon")
     parser.add_argument("--desktop", action="store_true",
-                        help="start in desktop widget mode (frameless glass widgets behind your windows)")
+                        help="experimental: floating frameless widgets behind your windows (not the macOS widget gallery)")
     parser.add_argument("--install-helpers", action="store_true",
                         help="macOS: install the CPU temperature helper (macmon / osx-cpu-temp) via Homebrew and exit")
     parser.add_argument("--start-hidden", action="store_true", help="start with no window, menu bar only")
@@ -196,7 +196,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             on_quit=app.quit,
             store=store,
             helper_setup=helper_setup,
-            on_desktop_mode=lambda on: holder["dash"].set_desktop_mode(on),
+            # the floating-window mode is experimental and only offered when started with --desktop
+            on_desktop_mode=(lambda on: holder["dash"].set_desktop_mode(on)) if args.desktop else None,
         )
         if not tray.available:
             tray = None

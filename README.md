@@ -1,16 +1,106 @@
+<div align="center">
+
 # IOX Stats
 
-System status at a glance - **iOS-style widgets** for CPU, memory, disk, network, ping and temperature,
-plus a **live readout in your menu bar / system tray**.
+**Your Mac's vital signs, dressed like iOS widgets.**
+
+CPU · Memory · Disk · Network · Ping · CPU temperature - live in the menu bar, as glass widgets,
+and right in the macOS widget gallery.
+
+![macOS](https://img.shields.io/badge/macOS-14%2B-000000?logo=apple&logoColor=white)
+![Apple Silicon & Intel](https://img.shields.io/badge/Apple%20Silicon%20%26%20Intel-supported-555555)
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
+![Swift](https://img.shields.io/badge/Swift-WidgetKit-F05138?logo=swift&logoColor=white)
+![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-blue)
+![Status](https://img.shields.io/badge/status-pre--release-orange)
+
+</div>
+
+---
+
+> **A non-commercial community project by [saxcodez](https://github.com/saxcodez).**
+> IOX Stats is built for the Mac community - free to use, free to tinker with, **not for sale**.
+> All rights remain with the author (see [License & intent](#license--intent)). Questions, ideas, bug reports and
+> requests are very welcome: [open an issue](https://github.com/saxcodez/iox_stats/issues/new/choose).
 
 | Light | Dark |
 |---|---|
 | ![Dashboard light](docs/screenshots/dashboard-light.png) | ![Dashboard dark](docs/screenshots/dashboard-dark.png) |
 
-### Make it yours
+## Why
 
-Every widget can be shown as **rings**, **bars**, **numbers only** or in a **detailed** view, and you choose
-which values it shows. Right-click a widget (or use the menu bar menu **Widgets**):
+Activity Monitor is great for forensics, not for a glance. The menu bar tools out there are either ugly, closed or
+subscription-ware. IOX Stats wants to be the thing you would expect Apple to ship: native look, honest numbers,
+no account, no telemetry, no nonsense - and open for anyone to read, learn from and improve.
+
+## Features
+
+| | |
+|---|---|
+| **Menu bar readout** | Live every second. **2 values** side by side or **1 value**; pick up to 6, the rest rotate every 4 s so your other menu bar icons keep their place. Orange / red when things get hot, slow or full. |
+| **Glass widgets** | Continuous corners, iOS widget grid, San Francisco, Apple system colours, light & dark. Each widget: **rings**, **bars**, **numbers** or **detailed** - and you pick the values. |
+| **Widget gallery** | A native **WidgetKit** widget: right-click the desktop > *Edit Widgets* > *IOX Stats*. Fed with the app's live values, CPU temperature included. |
+| **CPU temperature** | Apple Silicon and Intel. One click installs the tiny sensor helper via Homebrew - no kernel extension, no `sudo`. |
+| **Well-behaved** | Launch at Login and Start Hidden are opt-in. Log file for troubleshooting. Zero data collection - the only network traffic is the ping you can see. |
+
+## How it works
+
+```mermaid
+flowchart LR
+    subgraph mac[Your Mac]
+        S[psutil<br/>CPU, RAM, disk, net] --> A
+        H[macmon / osx-cpu-temp<br/>temperature helper] --> A
+        P[TCP ping 1.1.1.1:443] --> A
+        A[IOX Stats app<br/>Python + Qt] --> M[Menu bar item]
+        A --> W[Glass widget window]
+        A -- snapshot.json<br/>every 2 s --> G[WidgetKit widget<br/>Swift]
+        G --> D[Desktop /<br/>Notification Center]
+    end
+```
+
+The widget runs in Apple's sandbox and cannot read sensors or run helpers itself, so the app hands it the numbers
+through a small JSON file. If the app is not running, the widget measures what the sandbox allows on its own.
+
+## Quick start
+
+Requirements: macOS 14+, Python 3.9+ (`brew install python`), optionally [Homebrew](https://brew.sh) for the
+temperature helper and Xcode (free) for the widget gallery widget.
+
+```bash
+bash scripts/setup_macos.sh
+```
+
+```bash
+source .venv/bin/activate
+```
+
+```bash
+python -m iox_stats
+```
+
+The setup script creates a virtual environment, installs the packages and offers to install the temperature
+helper. Paste commands one at a time - zsh chokes on `# comments` pasted after a command.
+
+### Widget gallery widget
+
+```bash
+brew install xcodegen
+```
+
+```bash
+bash scripts/install_widgets.sh
+```
+
+Builds the Swift widget signed with your (free) Apple ID team, installs `IOX Stats.app` to `/Applications` and
+registers the widget. Then: right-click the desktop > **Edit Widgets** > search **IOX Stats**.
+Details and troubleshooting: [`macos-widgets/README.md`](macos-widgets/README.md).
+
+## Using it
+
+Click the menu bar item: dashboard, *Menu bar values* (pick values, **Show 2 / Show 1 value**), *Widgets*,
+*Appearance*, **Launch at Login**, **Start Hidden**, **Set Up CPU Temperature...**, **About**, **Open Log Folder**.
+
+Right-click any widget in the window to change its size, style and values:
 
 | Style | Small | Medium |
 |---|---|---|
@@ -19,155 +109,71 @@ which values it shows. Right-click a widget (or use the menu bar menu **Widgets*
 | Bars | 3 | 4 |
 | Numbers only | 3 | 6 |
 
-Values that no longer fit are greyed out. You can also add / remove / reorder widgets (up to 12) and start
-from a preset (Detailed, Rings, Bars, Numbers only, Mixed). Your layout is saved in `settings.json`.
-
 | Rings | Bars | Numbers |
 |---|---|---|
 | ![Rings](docs/screenshots/layout-rings.png) | ![Bars](docs/screenshots/layout-bars.png) | ![Numbers](docs/screenshots/layout-numbers.png) |
 
-Menu bar / tray readout (macOS & Linux show text, Windows shows a compact status ring):
+A note on "live": the menu bar and the window update every second. Gallery widgets are refreshed when **macOS**
+decides - IOX Stats asks often, macOS answers when it likes. That is a platform limit, not a bug.
 
-![Menu bar](docs/screenshots/menubar.png)
-
-## Features
-
-- **Apple look & feel**: glass widget surface, continuous corners, iOS grid sizes, system fonts
-  (San Francisco on macOS) and Apple's system colours - designed to sit next to native widgets
-- Widgets: CPU and memory activity rings, temperature gauge, free disk space, network up/down and ping
-  with smooth history charts, per-core CPU bars, uptime, battery
-- Light / dark appearance (follows the system)
-- **macOS widget gallery**: native widget for desktop / Notification Center (`macos-widgets/`)
-- **Your choice**: rings, bars or numbers per widget, and which values each one shows
-- Menu bar / tray: pick up to 4 values, colour-coded when warm, slow or full
-- **Launch at Login** - opt-in, one checkbox in the menu to switch it off again
-- Ping without admin rights (TCP connect), never blocks the UI
-- Cross-platform (macOS, Windows, Linux) - Python 3.9+ and Qt (PySide6)
-
-## Install & run
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate            # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python -m iox_stats
-```
-
-Windows / Linux: click the tray icon to show or hide the dashboard. macOS: click the menu bar item and
-choose "Show Dashboard". The menu also lets you choose the menu bar values, the appearance, **About IOX Stats**
-and **Open Log Folder** (for diagnostics), and quit.
-
-### Menu bar values
-
-Pick up to 6 values in the menu. By default IOX Stats shows **one value at a time and rotates** through your
-selection every 4 seconds - this keeps the menu bar item narrow so it does not crowd out your other menu bar
-icons (Wi-Fi, Battery, Weather, ...). Turn "Rotate through the values" off in the same submenu to show them all
-side by side instead. Hovering the item always shows every selected value in the tooltip, whichever mode you use.
-
-### One-shot setup (macOS)
-
-```bash
-bash scripts/setup_macos.sh          # venv + packages + (optional) temperature helper
-source .venv/bin/activate && python -m iox_stats
-```
-
-### Launch at login
-
-On first start IOX Stats asks once whether it should start at login (default: No). You can change it
-at any time with the menu item **Launch at Login**. It uses a per-user LaunchAgent (macOS), the per-user
-`Run` registry key (Windows) or an autostart entry (Linux) and starts quietly in the menu bar
-(`--background`). Switching it off removes exactly that entry.
-
-### Menu bar on macOS
-
-The menu bar readout is a native macOS status item (needs `pyobjc-framework-Cocoa`, installed by
-`requirements.txt`). If it shows a round icon instead of text, run `pip install -r requirements.txt` again.
-`IOX_STATS_NO_NATIVE_STATUSITEM=1` switches back to the Qt tray icon.
-
-### Live or snapshot? Three kinds of widgets
-
-| Where | How live | Notes |
-| --- | --- | --- |
-| **IOX Stats window** and **menu bar item** | every second | the live readout |
-| **Desktop Widget Mode** (menu > *Desktop Widget Mode*, or `--desktop`) | every second | frameless glass widgets behind your windows; drag them where you want them |
-| **macOS widget gallery** (`macos-widgets/`) | as often as macOS allows | macOS decides when a widget refreshes - never per second |
-
-The gallery widget shows the live values (including the CPU temperature) of the running IOX Stats app: the app writes
-them to `~/Library/Application Support/IOXStats/snapshot.json` (numbers only; switch off with
-`"share_with_widgets": false`), and the widget host app asks macOS to refresh the widgets every 15 seconds.
-
-### Widgets in the macOS widget gallery
-
-The folder [`macos-widgets/`](macos-widgets/README.md) contains a native WidgetKit widget (Swift, built with Xcode)
-for the desktop and Notification Center. In *Edit Widget* you choose Rings, Bars or Numbers only and the values
-(same limits as the window), including the **CPU temperature**.
-
-```bash
-brew install xcodegen && cd macos-widgets && xcodegen generate && open IOXStats.xcodeproj
-```
-
-### Glass effect
-
-On macOS the dashboard window gets a real blur-behind (needs `pyobjc-framework-Cocoa`, installed by
-`requirements.txt`). Everywhere else a simulated soft backdrop is painted. To turn the native blur off set
-`"glass": false` in `settings.json` or start with `IOX_STATS_NO_NATIVE_BLUR=1`.
-
-### CPU temperature on macOS
-
-macOS has no public temperature API and needs **no driver** for it: a small user-space tool reads Apple's sensors.
-IOX Stats finds it (also in the Homebrew folders, which an app started at login does not have on its `PATH`) and,
-if it is missing, offers to install the right one with Homebrew - **no sudo, no administrator password**:
-
-- On the first start it asks once ("Show the CPU temperature?").
-- Any time later: menu bar item > **Set Up CPU Temperature...** (it shows which tool is active).
-- From the terminal: `python -m iox_stats --install-helpers`, or run `bash scripts/setup_macos.sh` for everything.
-
-By hand it is `brew install macmon` (Apple Silicon) or `brew install osx-cpu-temp` (Intel). Homebrew itself comes
-from <https://brew.sh>. Remove the tool any time with `brew uninstall macmon`.
-
-On Linux `psutil` reads the sensors directly. Without a sensor the widget shows "n/a".
-
-## Command line
+### Command line
 
 ```text
 python -m iox_stats --version
-python -m iox_stats --once                                  # one JSON snapshot
-python -m iox_stats --screenshot out.png --theme dark --demo [--layout rings|bars|numbers|mixed|detailed]
-python -m iox_stats --no-tray --theme light
-python -m iox_stats --background                            # menu bar only, no window (what autostart uses)
-python -m iox_stats --desktop                               # start in Desktop Widget Mode
-python -m iox_stats --install-helpers                       # macOS: set up the CPU temperature helper
-python -m iox_stats --start-hidden                           # start with no window (like the menu checkbox)
-python -m iox_stats --show-log                              # print the path to the log file
+python -m iox_stats --once              # one JSON snapshot to stdout
+python -m iox_stats --start-hidden      # menu bar only
+python -m iox_stats --install-helpers   # set up the CPU temperature helper
+python -m iox_stats --show-log          # where is the log?
+python -m iox_stats --screenshot out.png --theme dark --demo --layout rings
 ```
 
-Settings live in `settings.json` in your config folder (macOS: `~/Library/Application Support/IOXStats`,
-Windows: `%APPDATA%\IOXStats`, Linux: `~/.config/IOXStats`).
+Settings: `~/Library/Application Support/IOXStats/settings.json` · Log: `~/Library/Application Support/IOXStats/logs/`
 
-> The screenshots are rendered headlessly with the built-in `--demo` data. On macOS the window additionally
-> gets the system blur-behind, so the real thing looks even closer to native widgets.
+## Project status
 
-## Development
-
-```bash
-pip install -r requirements.txt pytest
-QT_QPA_PLATFORM=offscreen python -m pytest      # headless UI tests included
-python scripts/check_version.py                 # version / CHANGELOG / release notes consistent?
-python scripts/package_zip.py                   # dist/IOX_Stats_vX.Y.Z.zip
-```
-
-Releases follow [Semantic Versioning](https://semver.org). Every release has an entry in
-[CHANGELOG.md](CHANGELOG.md) and release notes in [`docs/release-notes/`](docs/release-notes/).
-See [docs/RELEASING.md](docs/RELEASING.md) for the release process and
-[docs/GITHUB_SETUP.md](docs/GITHUB_SETUP.md) for connecting a (private) GitHub repository.
+Pre-release (`0.x`). What is verified on real hardware and what is still open is tracked openly in
+**[docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)**. Every release: [CHANGELOG.md](CHANGELOG.md) and
+[release notes](docs/release-notes/).
 
 ## Roadmap
 
-- macOS: menu-bar-only mode (no Dock icon), acrylic / Mica glass on Windows
-- Drag-and-drop arranging, settings dialog (ping host, refresh interval)
-- Top processes, GPU, per-interface network, alerts / notifications
-- Signed & notarized macOS build, Windows installer
+**Towards 1.0**
+- Widget gallery widget confirmed on Apple Silicon and Intel
+- Downloadable **DMG**: signed app, temperature helper set up for you
+- Menu-bar-only app (no Dock icon)
 
-## License
+**After that**
+- Settings window: ping target, refresh rate, your own orange / red thresholds
+- Top processes, GPU load, fan speed, per-interface network
+- Notifications when something stays red (e.g. CPU hot for 5 minutes)
+- Large widget, StandBy-style layouts
+- Localisation, German first
 
-MIT - see [LICENSE](LICENSE).
+Got an idea that fits? [Tell us.](https://github.com/saxcodez/iox_stats/issues/new/choose)
+
+## Contributing & requests
+
+This project lives from feedback. The most valuable contribution right now is **a test report from your Mac**.
+
+- **Bug?** Open a *Bug report* and attach the log (menu > *Open Log Folder*) plus macOS version and chip.
+- **Idea or request?** Open a *Feature request* - requests of any kind (features, collaboration, licensing) are
+  welcome there.
+- **Code?** Read [CONTRIBUTING.md](CONTRIBUTING.md), fork, branch, test, pull request.
+
+## License & intent
+
+IOX Stats is **source-available for non-commercial use** under the
+[PolyForm Noncommercial License 1.0.0](LICENSE). In plain words (the license text is what counts):
+
+- ✅ Use it, study it, modify it, share it - for personal, hobby, educational and other non-commercial purposes.
+- ❌ Selling it, bundling it into a paid product or offering it as a paid service is not allowed.
+- © Copyright and all rights not granted by the license stay with **saxcodez**. For anything beyond
+  non-commercial use, open an issue and ask.
+
+This is not legal advice; it is the reason the license was chosen: a tool made with good intentions, for the
+community, that nobody should be able to turn into a paywall.
+
+IOX Stats is provided as-is, without warranty. It is not affiliated with or endorsed by Apple Inc.; macOS, Apple
+Silicon and San Francisco are trademarks of Apple Inc.
+
+<div align="center"><sub>Built with curiosity, too much coffee and a soft spot for rounded corners. - saxcodez</sub></div>

@@ -1,0 +1,46 @@
+{
+  "" : {
+    "const-values" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.swiftconstvalues",
+    "dependencies" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.d",
+    "diagnostics" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.dia",
+    "emit-module-dependencies" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary-emit-module.dia",
+    "pch" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.swiftdeps"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Shared/SharedSnapshot.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/SharedSnapshot.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/SharedSnapshot.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/SharedSnapshot.o"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Collector.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Collector.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Collector.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Collector.o"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Layout.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Layout.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Layout.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Layout.o"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/SharedSnapshot+System.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/SharedSnapshot+System.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/SharedSnapshot+System.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/SharedSnapshot+System.o"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Snapshot.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Snapshot.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Snapshot.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Snapshot.o"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/StatsWidget.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/StatsWidget.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/StatsWidget.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/StatsWidget.o"
+  },
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Views.swift" : {
+    "index-unit-output-path" : "/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Views.o",
+    "llvm-bc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Views.bc",
+    "object" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/Views.o"
+  }
+}

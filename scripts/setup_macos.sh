@@ -41,4 +41,4 @@ fi
 echo
 echo "Done. Start with:"
 echo "  source .venv/bin/activate && python -m iox_stats"
-echo "Desktop widgets (live, behind your windows):  python -m iox_stats --desktop"
+echo "Widget gallery widget (needs Xcode):  bash scripts/build_widgets.sh"

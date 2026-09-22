@@ -1,0 +1,12 @@
+{
+  "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Collector.swift" : {
+    "abi-baseline-json" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.abi.json",
+    "const-values" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.swiftconstvalues",
+    "dependencies" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.d",
+    "diagnostics" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-primary.dia",
+    "objc-header" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-Swift.h",
+    "swiftdoc" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftdoc",
+    "swiftmodule" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule",
+    "swiftsourceinfo" : "/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftsourceinfo"
+  }
+}

@@ -113,11 +113,11 @@ def test_tray_helper_item_offers_setup_then_shows_active_tool(qapp):
 def test_tray_desktop_toggle_saves_and_calls_back(qapp):
     calls, settings = [], Settings()
     tray = _tray(settings=settings, on_desktop_mode=calls.append)
-    assert tray.desktop_action.isEnabled() and not tray.desktop_action.isChecked()
+    assert tray.desktop_action.text().endswith("(experimental)") and not tray.desktop_action.isChecked()
     tray.desktop_action.setChecked(True)
     assert calls == [True] and settings.desktop_mode is True
     assert json.loads((config_dir() / "settings.json").read_text())["desktop_mode"] is True
-    assert not _tray().desktop_action.isEnabled()            # nothing to control -> disabled
+    assert _tray().desktop_action is None                    # not wired up (default) -> not in the menu
 
 
 # --- desktop mode -----------------------------------------------------------------

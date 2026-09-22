@@ -1,4 +1,4 @@
-"""v0.6.0: menu bar rotation, logging, About dialog, Start Hidden."""
+"""Menu bar display modes, logging, About dialog, Start Hidden."""
 
 import logging
 
@@ -24,44 +24,60 @@ def _tray(settings=None, **kw):
                           autostart=_Auto(), native_factory=lambda cb: None, **kw)
 
 
-# --- rotation ---------------------------------------------------------------------
-def test_rotation_is_on_by_default_and_shows_one_value(qapp, snap):
-    settings = Settings(tray_metrics=["cpu", "temp", "ping"])
-    assert settings.tray_rotate is True
+# --- menu bar display: 2 values or 1 value, extra values rotate -----------------------------
+def test_default_shows_two_values_side_by_side(qapp):
+    settings = Settings(tray_metrics=["cpu", "temp"])
+    assert settings.tray_mode == "two"
     tray = _tray(settings)
-    assert tray._display_ids() == ["cpu"]
+    assert tray._display_ids() == ["cpu", "temp"]
     tray._rotate_tick()
-    assert tray._display_ids() == ["temp"]
-    tray._rotate_tick()
-    assert tray._display_ids() == ["ping"]
-    tray._rotate_tick()                          # wraps around
-    assert tray._display_ids() == ["cpu"]
+    assert tray._display_ids() == ["cpu", "temp"]                # everything fits: nothing rotates
+
+
+def test_two_mode_rotates_in_pairs_when_more_are_selected(qapp):
+    tray = _tray(Settings(tray_metrics=["cpu", "temp", "ping", "ram", "disk"]))
+    seen = []
+    for _ in range(4):
+        seen.append(tray._display_ids())
+        tray._rotate_tick()
+    assert seen == [["cpu", "temp"], ["ping", "ram"], ["disk"], ["cpu", "temp"]]
+
+
+def test_one_mode_rotates_single_values(qapp):
+    settings = Settings(tray_metrics=["cpu", "temp", "ping"])
+    tray = _tray(settings)
+    tray.mode_actions["one"].trigger()
+    assert settings.tray_mode == "one" and Settings.load().tray_mode == "one"
+    assert tray.mode_actions["one"].isChecked() and not tray.mode_actions["two"].isChecked()
+    shown = []
+    for _ in range(4):
+        shown.append(tray._display_ids())
+        tray._rotate_tick()
+    assert shown == [["cpu"], ["temp"], ["ping"], ["cpu"]]
+    tray.mode_actions["two"].trigger()                           # and back: nothing is lost
+    assert tray._display_ids() == ["cpu", "temp"] and settings.tray_metrics == ["cpu", "temp", "ping"]
 
 
 def test_single_value_never_rotates(qapp):
-    tray = _tray(Settings(tray_metrics=["cpu"]))
-    assert tray._display_ids() == ["cpu"]
+    tray = _tray(Settings(tray_metrics=["cpu"], tray_mode="one"))
     tray._rotate_tick()
     assert tray._display_ids() == ["cpu"]
 
 
-def test_rotate_toggle_updates_menu_and_timer(qapp):
-    settings = Settings(tray_metrics=["cpu", "temp"])
+def test_unknown_mode_is_sanitized_and_ignored(qapp):
+    assert Settings(tray_mode="all").sanitize().tray_mode == "two"
+    settings = Settings()
     tray = _tray(settings)
-    assert tray.rotate_action.isChecked() and tray._rotate_timer.isActive()
-    tray.rotate_action.setChecked(False)
-    assert not settings.tray_rotate and not tray._rotate_timer.isActive()
-    assert tray._display_ids() == settings.tray_metrics           # both shown at once again
-    tray.rotate_action.setChecked(True)
-    assert settings.tray_rotate and tray._rotate_timer.isActive()
+    tray.set_tray_mode("bogus")
+    assert settings.tray_mode == "two"
     assert tray._rotate_timer.interval() == ROTATE_INTERVAL_MS
 
 
-def test_tooltip_always_lists_every_selected_value_even_while_rotating(qapp, snap):
-    tray = _tray(Settings(tray_metrics=["cpu", "ping"]))
+def test_tooltip_always_lists_every_selected_value(qapp, snap):
+    tray = _tray(Settings(tray_metrics=["cpu", "ping", "ram"], tray_mode="one"))
     tray.refresh(snap)
     tip = tray.icon.toolTip()
-    assert "CPU 42%" in tip and "Ping 18 ms" in tip                # both present despite rotation
+    assert "CPU 42%" in tip and "Ping 18 ms" in tip and "RAM" in tip
 
 
 def test_max_tray_metrics_raised_to_six():
@@ -153,13 +169,3 @@ def test_show_log_cli_prints_path(capsys):
 
     assert main(["--show-log"]) == 0
     assert str(log_path()) in capsys.readouterr().out
-
-
-def test_start_hidden_flag_sets_setting(qapp, tmp_path, monkeypatch):
-    # exercised indirectly: the flag must be accepted and stored before the event loop would run
-    import argparse
-
-    from iox_stats.app import main as _main  # noqa: F401 (import guards against syntax errors)
-
-    parser_ok = True
-    assert parser_ok

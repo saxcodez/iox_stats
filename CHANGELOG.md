@@ -7,6 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-09-22
+
+**Widget install for real, non-commercial license, a README worth reading.**
+
+### Added
+- `scripts/install_widgets.sh`: builds the widget gallery widget **signed** (finds your Apple ID team itself, falls
+  back to ad-hoc signing), installs `IOX Stats.app` to `/Applications`, registers the widget with macOS,
+  restarts the widget daemon and checks that the widget is listed. Log: `macos-widgets/widget-install.log`.
+  Fixes "the build succeeds but IOX Stats is not in Edit Widgets" - an unsigned build is never listed.
+- `docs/PROJECT_STATUS.md`: public status page - what is verified on which Mac, what is open.
+- Issue template config linking to the project status.
+
+### Changed
+- **License: PolyForm Noncommercial 1.0.0** (was MIT). IOX Stats is a non-commercial community project: free for
+  personal and other non-commercial use, not for sale; copyright and all other rights stay with saxcodez.
+  Contribution terms added to `CONTRIBUTING.md`. About dialog updated.
+- README rewritten: badges, "why", feature table, architecture diagram, license & intent, requests welcome.
+- Repository URL is now `github.com/saxcodez/iox_stats`.
+
+### Verified
+- The Swift widget project compiles: macOS 26.3.2, Xcode 26.6, Apple Silicon (first build on real hardware).
+
+## [0.7.0] - 2026-09-22
+
+**macOS-only community project, and the menu bar shows 2 values again.**
+
+### Changed
+- **Menu bar display:** choose **Show 2 values** (default, as before) or **Show 1 value**. Up to 6 values can be
+  selected; values that do not fit rotate every 4 seconds (in pairs in 2-value mode). Replaces the v0.6.0
+  "rotate on/off" switch, which could show all values side by side and crowd out other menu bar icons.
+  Setting `tray_rotate` is replaced by `tray_mode` (`"two"` / `"one"`).
+- **macOS only:** README, docs, roadmap and CI / release workflows no longer target Windows or Linux.
+  The release workflow builds the macOS app only.
+- The experimental floating-window mode is no longer in the menu (only with `--desktop`). The desktop widgets are
+  the macOS widget gallery widgets (right-click the desktop > Edit Widgets).
+- License holder: saxcodez and the IOX Stats contributors (still MIT). GitHub links point to
+  `github.com/saxcodez/iox_stats`.
+- README, `docs/GITHUB_SETUP.md` and `docs/RELEASING.md` rewritten in English.
+
+### Added
+- `scripts/build_widgets.sh`: test-builds the widget gallery widget (checks Xcode / XcodeGen, compiles unsigned,
+  writes `macos-widgets/widget-build.log` and prints the compiler errors).
+- `CONTRIBUTING.md`, issue templates (bug report, feature request), project URLs in `pyproject.toml`.
+
 ## [0.6.0] - 2026-09-22
 
 **Menu bar rotation, logging, and the first pieces for a real release.**
@@ -224,11 +268,13 @@ First tagged release: a working dashboard with iOS-style widgets and a live menu
 - macOS shows a Dock icon while running (menu-bar-only mode is planned).
 - No login-item / autostart option yet.
 
-[Unreleased]: https://github.com/OWNER/IOX_Stats/compare/v0.6.0...HEAD
-[0.6.0]: https://github.com/OWNER/IOX_Stats/compare/v0.5.0...v0.6.0
-[0.5.0]: https://github.com/OWNER/IOX_Stats/compare/v0.4.0...v0.5.0
-[0.4.0]: https://github.com/OWNER/IOX_Stats/compare/v0.3.1...v0.4.0
-[0.3.1]: https://github.com/OWNER/IOX_Stats/compare/v0.3.0...v0.3.1
-[0.3.0]: https://github.com/OWNER/IOX_Stats/compare/v0.2.0...v0.3.0
-[0.2.0]: https://github.com/OWNER/IOX_Stats/compare/v0.1.0...v0.2.0
-[0.1.0]: https://github.com/OWNER/IOX_Stats/releases/tag/v0.1.0
+[Unreleased]: https://github.com/saxcodez/iox_stats/compare/v0.8.0...HEAD
+[0.8.0]: https://github.com/saxcodez/iox_stats/compare/v0.7.0...v0.8.0
+[0.7.0]: https://github.com/saxcodez/iox_stats/compare/v0.6.0...v0.7.0
+[0.6.0]: https://github.com/saxcodez/iox_stats/compare/v0.5.0...v0.6.0
+[0.5.0]: https://github.com/saxcodez/iox_stats/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/saxcodez/iox_stats/compare/v0.3.1...v0.4.0
+[0.3.1]: https://github.com/saxcodez/iox_stats/compare/v0.3.0...v0.3.1
+[0.3.0]: https://github.com/saxcodez/iox_stats/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/saxcodez/iox_stats/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/saxcodez/iox_stats/releases/tag/v0.1.0

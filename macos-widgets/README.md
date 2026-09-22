@@ -2,8 +2,8 @@
 
 Native macOS widgets for the **widget gallery** (desktop, Notification Center), written in Swift / SwiftUI.
 Apple only allows widgets that are WidgetKit extensions inside an app, so this part is a small native project
-next to the Python app. The Python app keeps the live **menu bar readout**, the IOX Stats window and the
-**desktop widget mode** (glass widgets that really tick every second).
+next to the Python app. The Python app keeps the live **menu bar readout** and the IOX Stats window, and feeds
+the widget with its live values.
 
 What you get:
 
@@ -61,7 +61,7 @@ target to macOS 14.
   The widget asks for a new timeline every minute, and this small host app calls `reloadAllTimelines()` every
   15 seconds while it is running (the window says whether it is receiving live data). macOS may delay some of
   these reloads - that is a limit of every widget on macOS. For values that change every second use the menu bar
-  item or the **Desktop Widget Mode** of the Python app.
+  item or the IOX Stats window.
 - **CPU temperature.** macOS offers no public temperature API and the widget sandbox cannot run helper tools.
   The Python app reads it (it installs `macmon` / `osx-cpu-temp` with Homebrew after asking once - no kernel
   driver, no admin password) and hands it to the widget through `snapshot.json`. Without the Python app the
@@ -73,8 +73,33 @@ target to macOS 14.
 - **Ping** needs the *Outgoing Connections* entitlement (already set) and does a TCP connect to 1.1.1.1:443.
 - The Python app and the widgets are independent: settings of one do not change the other.
 
+## Install on your Mac (the easy way)
+
+```bash
+bash scripts/install_widgets.sh
+```
+
+Builds the app **signed** with your Apple ID team (found automatically), installs `IOX Stats.app` to
+`/Applications`, registers the widget with macOS and restarts the widget daemon. Then: right-click the desktop >
+**Edit Widgets** > search **IOX Stats**. Log: `macos-widgets/widget-install.log`.
+
+Why this step exists: `build_widgets.sh` only proves that the code compiles. macOS lists a widget only when its
+app is **signed, installed and opened once** - an unsigned build in a build folder never appears in the gallery.
+
+No Apple ID in Xcode yet? *Xcode > Settings > Accounts > +* > Apple ID (free is fine). Then run the script again.
+
+## Test build
+
+From the project folder:
+
+```bash
+bash scripts/build_widgets.sh
+```
+
+It checks Xcode and XcodeGen, generates the project, compiles it without signing and writes
+`macos-widgets/widget-build.log`. On failure it prints the compiler errors - please attach them to an issue.
+
 ## Status
 
-Written without access to a Mac: the Swift code is checked by a GitHub Actions build (`widgets` job in
-`.github/workflows/ci.yml`) but has **not been run on a real Mac yet**. If Xcode shows an error, send it and it
-will be fixed in the next version.
+The Swift code has **not been run on a real Mac yet** (it was written and checked without one; the `widgets` CI
+job compiles it on GitHub). Test reports from Apple Silicon and Intel Macs are very welcome.

@@ -21,14 +21,14 @@ from ..autostart import Autostart
 from ..collectors import Snapshot
 from ..layout import LayoutStore
 from ..metrics import METRICS, NA, OK
-from ..settings import MAX_TRAY_METRICS, Settings
+from ..settings import MAX_TRAY_METRICS, TRAY_MODES, Settings
 from .theme import DARK, LIGHT, Theme, resolve_theme
 from .fonts import W_MEDIUM, W_SEMIBOLD, ui_font
 from .macos_status import create_status_item
 from .widget_menu import populate_widgets_menu
 from .widgets import draw_activity_ring
 
-ROTATE_INTERVAL_MS = 4000   # how long one value stays visible when rotation is on
+ROTATE_INTERVAL_MS = 4000   # how long one page of values stays visible when more are selected than fit
 _SCALE = 2  # render @2x for crisp menu bar text
 
 
@@ -139,8 +139,7 @@ class TrayController:
         self._rotate_timer.timeout.connect(self._rotate_tick)
         self._build_menu(on_quit)
         self._last_snap = Snapshot()
-        if self.settings.tray_rotate:
-            self._rotate_timer.start()
+        self._rotate_timer.start()          # only changes something when more values are selected than shown
 
         # macOS: a native status item shows real, readable text. Qt's tray icon would squeeze it into a square.
         self.native = None
@@ -190,12 +189,19 @@ class TrayController:
             sub.addAction(act)
             self.metric_actions[mid] = act
         sub.addSeparator()
-        self.rotate_action = QAction("Rotate through the values", sub, checkable=True)
-        self.rotate_action.setChecked(self.settings.tray_rotate)
-        self.rotate_action.setToolTip("Show one value at a time, cycling every few seconds - takes less "
-                                      "space next to your other menu bar icons.")
-        self.rotate_action.toggled.connect(self.set_rotate)
-        sub.addAction(self.rotate_action)
+        self.mode_actions = {}
+        mode_group = QActionGroup(sub)
+        mode_group.setExclusive(True)
+        for key, label in (("two", "Show 2 values"), ("one", "Show 1 value")):
+            act = QAction(label, sub, checkable=True)
+            act.setChecked(self.settings.tray_mode == key)
+            act.triggered.connect(lambda _c=False, key=key: self.set_tray_mode(key))
+            mode_group.addAction(act)
+            sub.addAction(act)
+            self.mode_actions[key] = act
+        hint = QAction("More selected values rotate every few seconds", sub)
+        hint.setEnabled(False)
+        sub.addAction(hint)
 
         if self.store is not None:
             self.widgets_menu = self.menu.addMenu("Widgets")
@@ -216,11 +222,14 @@ class TrayController:
             theme_menu.addAction(act)
 
         self.menu.addSeparator()
-        self.desktop_action = QAction("Desktop Widget Mode", self.menu, checkable=True)
-        self.desktop_action.setChecked(self.settings.desktop_mode)
-        self.desktop_action.setEnabled(self._on_desktop_mode is not None)
-        self.desktop_action.toggled.connect(self.set_desktop_mode)
-        self.menu.addAction(self.desktop_action)
+        # Experimental floating window mode: only offered when the app wires it up (it does not by default -
+        # the real desktop widgets are the macOS widget gallery widgets in macos-widgets/).
+        self.desktop_action = None
+        if self._on_desktop_mode is not None:
+            self.desktop_action = QAction("Floating Widgets (experimental)", self.menu, checkable=True)
+            self.desktop_action.setChecked(self.settings.desktop_mode)
+            self.desktop_action.toggled.connect(self.set_desktop_mode)
+            self.menu.addAction(self.desktop_action)
 
         self.helper_action = None
         if self.helper_setup is not None and self.helper_setup.available:
@@ -255,25 +264,34 @@ class TrayController:
         quit_act.triggered.connect(on_quit)
         self.menu.addAction(quit_act)
 
+    @property
+    def per_view(self) -> int:
+        """How many values are visible at once (2 or 1)."""
+        return TRAY_MODES.get(self.settings.tray_mode, 2)
+
+    def _pages(self) -> List[List[str]]:
+        ids, n = self.settings.tray_metrics, self.per_view
+        return [ids[i:i + n] for i in range(0, len(ids), n)] or [[]]
+
     def _display_ids(self) -> List[str]:
-        """Menu bar ids to actually draw: one, rotating, or all of them side by side."""
-        ids = self.settings.tray_metrics
-        if self.settings.tray_rotate and len(ids) > 1:
-            return [ids[self._rotate_index % len(ids)]]
-        return ids
+        """Ids to draw right now: all of them if they fit, otherwise the current page (they rotate)."""
+        pages = self._pages()
+        return pages[self._rotate_index % len(pages)]
 
     def _rotate_tick(self) -> None:
+        if len(self._pages()) <= 1:
+            return
         self._rotate_index += 1
         self.refresh(self._last_snap)
 
-    def set_rotate(self, enabled: bool) -> None:
-        self.settings.tray_rotate = enabled
+    def set_tray_mode(self, mode: str) -> None:
+        if mode not in TRAY_MODES:
+            return
+        self.settings.tray_mode = mode
         self.settings.save()
         self._rotate_index = 0
-        if enabled:
-            self._rotate_timer.start()
-        else:
-            self._rotate_timer.stop()
+        for key, act in self.mode_actions.items():
+            act.setChecked(key == mode)
         self.refresh(self._last_snap)
 
     def set_metric_enabled(self, mid: str, enabled: bool) -> None:
@@ -330,6 +348,8 @@ class TrayController:
         box.setInformativeText(
             "System status widgets in iOS style, with a live menu bar readout and a native macOS "
             "widget gallery widget.\n\n"
+            "A non-commercial community project by saxcodez - free for personal use, not for sale. "
+            "Licensed under the PolyForm Noncommercial License 1.0.0; all other rights reserved.\n\n"
             "Provided as-is, without warranty of any kind. IOX Stats reads local system metrics only; "
             "it does not collect or transmit any data.\n\n"
             f"{__github_url__}")

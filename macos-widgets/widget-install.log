@@ -1,0 +1,795 @@
+== IOX Stats widget install ==
+macOS: 26.3.2  CPU: arm64  Xcode: Xcode 26.6
+No Apple Development certificate found - signing ad-hoc (local only).
+If the widget does not show up afterwards: Xcode > Settings > Accounts > + > add your Apple ID,
+then open IOXStats.xcodeproj, choose your Team for both targets, press Run once, and run this script again.
+-- generating the Xcode project
+⚙️  Generating plists...
+⚙️  Generating project...
+⚙️  Writing project...
+Created project at /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+-- building (Release, signed) - 1-3 minutes
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project IOXStats.xcodeproj -scheme IOXStats -configuration Release -destination platform=macOS -derivedDataPath build CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM= PROVISIONING_PROFILE_SPECIFIER= build
+
+Build settings from command line:
+    CODE_SIGN_IDENTITY = -
+    CODE_SIGN_STYLE = Manual
+    DEVELOPMENT_TEAM = 
+    PROVISIONING_PROFILE_SPECIFIER = 
+
+2026-09-22 23:29:55.586 xcodebuild[12860:84149] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:00006050-001D20AC02D1401C, name:My Mac }
+{ platform:macOS, arch:x86_64, id:00006050-001D20AC02D1401C, name:My Mac }
+note: Using codesigning identity override: -
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (2 targets)
+    Target 'IOXStats' in project 'IOXStats'
+        ➜ Explicit dependency on target 'IOXStatsWidgets' in project 'IOXStats'
+    Target 'IOXStatsWidgets' in project 'IOXStats' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 2f229b94fcff1cd9a324926578c49eb0
+Build description path: /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/XCBuildData/2f229b94fcff1cd9a324926578c49eb0.xcbuilddata
+CreateBuildDirectory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    builtin-create-build-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products
+
+CreateBuildDirectory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    builtin-create-build-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache
+
+CreateBuildDirectory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    builtin-create-build-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+CreateBuildDirectory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/ExplicitPrecompiledModules
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    builtin-create-build-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats-12cbe46db42ba2d563971158bcd58b55-VFS/all-product-headers.yaml
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats-12cbe46db42ba2d563971158bcd58b55-VFS/all-product-headers.yaml
+
+CreateBuildDirectory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    builtin-create-build-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release
+
+CreateBuildDirectory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/IOXStats.xcodeproj
+    builtin-create-build-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-non-framework-target-headers.hmap (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.hmap (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-project-headers.hmap (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-project-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-generated-files.hmap (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-generated-files.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-target-headers.hmap (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-own-target-headers.hmap (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.DependencyStaticMetadataFileList (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.DependencyMetadataFileList (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/Entitlements.plist (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/Entitlements.plist
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftConstValuesFileList (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.LinkFileList (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.LinkFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-OutputFileMap.json (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftFileList (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_const_extract_protocols.json (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.DependencyStaticMetadataFileList (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.DependencyStaticMetadataFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.DependencyMetadataFileList (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.DependencyMetadataFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-project-headers.hmap (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-project-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.hmap (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-own-target-headers.hmap (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-own-target-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftFileList (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats-OutputFileMap.json (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats-OutputFileMap.json
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftConstValuesFileList (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.LinkFileList (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.LinkFileList
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats_const_extract_protocols.json (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats_const_extract_protocols.json
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-generated-files.hmap (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-generated-files.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-target-headers.hmap (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-target-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-non-framework-target-headers.hmap (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-non-framework-target-headers.hmap
+
+WriteAuxiliaryFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/Entitlements.plist (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    write-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/Entitlements.plist
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents
+
+MkDir /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /bin/mkdir -p /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app
+
+ProcessProductPackaging /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Widget.entitlements /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Widget.entitlements -entitlements -format xml -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent
+
+ProcessProductPackagingDER /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent.der (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /usr/bin/derq query -f xml -i /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent.der --raw
+
+ProcessInfoPlistFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/Info.plist /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Info.plist (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-infoPlistUtility /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Info.plist -producttype com.apple.product-type.app-extension -expandbuildsettings -platform macosx -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/Info.plist
+
+SwiftDriver IOXStatsWidgets normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IOXStatsWidgets -O -whole-module-optimization @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -application-extension -swift-version 5 -I /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -c -num-threads 15 -Xcc -ivfsstatcache -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -sdk-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_const_extract_protocols.json -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-generated-files.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-own-target-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-target-headers.hmap -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-project-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/include -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources-normal/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-Swift.h -working-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets -no-emit-module-separately-wmo
+
+SwiftDriver\ Compilation IOXStatsWidgets normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IOXStatsWidgets -O -whole-module-optimization @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -application-extension -swift-version 5 -I /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -c -num-threads 15 -Xcc -ivfsstatcache -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -sdk-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_const_extract_protocols.json -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-generated-files.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-own-target-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-target-headers.hmap -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-project-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/include -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources-normal/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-Swift.h -working-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets -no-emit-module-separately-wmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_SwiftConcurrencyShims-DY5KGP1E38QQ1U4DULDECZ1FL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stddef-CAD5JQQ91JFW7WMYWA2H7GT92.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdarg-B7HK93GS881K562X88YH5J36Q.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_AvailabilityInternal-B471U9OHLNBIGMQA62Q3WHG04.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdbool-A6LL9NCCUALRZLRE8TQK8Q9PJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftShims-PY4UQCX8QJKF7H3G17W2KCHF.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrcheck-AWFI8NTQB7QFQK89GLYNJBH7P.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ActivityKit-B6JTBWMCTG6K9R6V4PE7CKKS6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DeveloperToolsSupport-9NUMUOKJAOMM3MVB3TYNT2V2W.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_float-1YZGJUIAAT3N9EOMADP34HR98.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrauth-3ISA76RRFMLL4ZSPIJKR8MHE0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation1-5EZC9FHDFZ7HAI9EHBI2MV1BR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ExtensionFoundation-ENPVA2IUMJBMFN1UZR3TAHR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation2-7E2LM03HBRKPD78TLQVH05Y73.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_limits-BIYQ088S8L8VF9I63ABUL9MQ1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_tgmath-96VPIO3LSBBAKZI4OOHF691MP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdint-85YVFR6UUN1LYCVS0G7WN5UW3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/sys_types-CLLOD20FLVIQWXZTZPLX1Z8UL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_intrinsics-CZBGLMOLDY71SKMJWSUBVY3Z8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation3-7I2N6MYSB3AN0XEO8U8DEGBTK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OpenGL-3O6ZZEK334N96S9KALMCFV7C4.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdatomic-AN7DBSERIVNAXGW9HONQH2SWU.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libDER-DHE7TQHJN4GWA6EY8YS5ZVQKZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_inttypes-4RNH1OB5ZBYDE503ZBZAYZ5WL.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Darwin-F380YPUKQ07TP5A5XC6VGCF2D.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/simd-C12ZO2U0UIRF84SIIR8UGK7NE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/launch-ABU3JMDSA339DO5ZBX4RPSVEG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/MachO-DFVWUT30D5E4SSISRYN0205EA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CUPS-36K737OJSFSVNJJLUQAYIS4K.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libkern-5B8OAVTYDEMF6NXMAPMWTIAGM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Spatial-NEU9K1CLXP19V5ZD06QN8I0B.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ObjectiveC-DKYKL3PSFNE1PMNAKRERISILD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_object-5E6CN88B4TMRB8G5ROZCZY782.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_workgroup-15EYNEH5LU5GCOQDHGQB73LIY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Dispatch-8ZXB879O1W2I8IHXFUOQCZN8F.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/XPC-1AT851HHAOMZ4Z5NSHF60L05W.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/dnssd-C0ZGDKL5GLV0N14GDAOEZ3QUG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreFoundation-2PR0OMF4ZTYWUGGYS2CY4HPJT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os-89MP64T7A74H7VF0KTU4BHESG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Security-5M7THDEDO6PQDYO0PQQ3E962Z.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ColorSync-7579HYL96CB335TP7KWFQASJ6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOKit-F5F5ODW4DSD41Q3JM0E8MZLJ1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CFNetwork-9K3RY25166XE3TJJZ6JFVABJX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreGraphics-8WNF90T604JREIIUGDT8DLOLP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DiskArbitration-BZ9FOPW5P9N21GINJYF5POI2I.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreServices-7BUS4060FJYIC396ZSJAAGHGY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ImageIO-5B5SUZ1JBPPNT14UD0U852B4Q.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreText-3VSC33LY99V1CFIT1YUNOCBB1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Foundation-8NW7L6TK7HI0JC9AOWHFFQVDV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreData-5LNTNH9DSIGG5C7WW5K6QW2YJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ApplicationServices-317X2BGFB3ZZBEGZAWIFZ65XQ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppIntents-8LXU2YWCFGKEMEOKFR9AKEOY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreTransferable-C3ROMGDCD8J7VEFH9DHXP9QRT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Accessibility-E86YNZ7JU4CXRLX64ZAWFG5ES.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Symbols-8S0BTQE6NS9QJ3HRVRXBLBU2V.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OSLog-BON01F9YLVEGX2VWP3BSKLOQ1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/RelevanceKit-3E26KSV0KL0PDYJ1H921WC8J8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOSurface-A6Q69ZGPBMXX8AMA0UPJ51RNI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Network-63JY2IR1XT6PO2P8ZAP6WQEIS.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UniformTypeIdentifiers-JVKKX2TS0HLWRV30YN797CCN.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_LocationEssentials-1N3QN0IGTWJ1HSS7MNTKMC3R.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UserNotifications-4S93FXURJ83UG5TW9G4WU5TRK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DataDetection-C7GVA7F8NTD2BOEM2CO16MX3N.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/WidgetKit-7VIHRLNLG0CFGO5KN1RBYNF7R.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreLocation-99TH91PC6KJYJGBP0TVRXHPA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreSpotlight-50RFGE988XEI64NLI4PQQ7C6V.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Metal-2C342034SBHOXB1BUG6UIEHDM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Intents-EKH0ZYBROAEMOZG964ME9NFR7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreVideo-AWAC73HBYSPGR0N7H4B0NSZSX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreImage-5W4XFA55MBUTKT78CDDADF7WR.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/QuartzCore-6HEO34F4ZEXSQ5NG69Y23RZXY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUICore-B25ZS3S10N2Q6EYRX181UVUVI.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppKit-41D2PV7QOCDB85U15RUQQCM00.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUI-9TX7QBLRPTSUO6TU9ZVQVC2M8.pcm
+
+SwiftCompile normal arm64 Compiling\ Collector.swift,\ Layout.swift,\ SharedSnapshot+System.swift,\ SharedSnapshot.swift,\ Snapshot.swift,\ StatsWidget.swift,\ Views.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Collector.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Layout.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/SharedSnapshot+System.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Shared/SharedSnapshot.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Snapshot.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/StatsWidget.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Widget/Views.swift /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Metal.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/IOKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/DataDetection.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_Concurrency.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Intents.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Distributed.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreFoundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/AppIntents.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Swift.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_Builtin_float.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Spatial.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreVideo.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_DarwinFoundation3.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/System.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Darwin.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/os.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/UniformTypeIdentifiers.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Accessibility.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Observation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_AppIntents_SwiftUI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/OSLog.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_DarwinFoundation1.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/WidgetKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/ActivityKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/simd.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/SwiftUI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreSpotlight.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreLocation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_StringProcessing.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Network.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/QuartzCore.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/DeveloperToolsSupport.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/RelevanceKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_DarwinFoundation2.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreGraphics.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/SwiftUICore.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/AppKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreText.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Foundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/LightweightCodeRequirements.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Symbols.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreTransferable.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/ObjectiveC.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/XPC.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Combine.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreData.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Dispatch.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreImage.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/ExtensionFoundation.swiftmodule/arm64e-apple-macos.swiftmodule /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Security-5M7THDEDO6PQDYO0PQQ3E962Z.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Dispatch-8ZXB879O1W2I8IHXFUOQCZN8F.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_LocationEssentials-1N3QN0IGTWJ1HSS7MNTKMC3R.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreServices-7BUS4060FJYIC396ZSJAAGHGY.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_float-1YZGJUIAAT3N9EOMADP34HR98.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/XPC-1AT851HHAOMZ4Z5NSHF60L05W.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdarg-B7HK93GS881K562X88YH5J36Q.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Accessibility-E86YNZ7JU4CXRLX64ZAWFG5ES.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ColorSync-7579HYL96CB335TP7KWFQASJ6.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreText-3VSC33LY99V1CFIT1YUNOCBB1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ApplicationServices-317X2BGFB3ZZBEGZAWIFZ65XQ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_limits-BIYQ088S8L8VF9I63ABUL9MQ1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Darwin-F380YPUKQ07TP5A5XC6VGCF2D.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUI-9TX7QBLRPTSUO6TU9ZVQVC2M8.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrauth-3ISA76RRFMLL4ZSPIJKR8MHE0.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UniformTypeIdentifiers-JVKKX2TS0HLWRV30YN797CCN.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DeveloperToolsSupport-9NUMUOKJAOMM3MVB3TYNT2V2W.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_AvailabilityInternal-B471U9OHLNBIGMQA62Q3WHG04.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_inttypes-4RNH1OB5ZBYDE503ZBZAYZ5WL.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreSpotlight-50RFGE988XEI64NLI4PQQ7C6V.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ObjectiveC-DKYKL3PSFNE1PMNAKRERISILD.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Foundation-8NW7L6TK7HI0JC9AOWHFFQVDV.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdatomic-AN7DBSERIVNAXGW9HONQH2SWU.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UserNotifications-4S93FXURJ83UG5TW9G4WU5TRK.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreImage-5W4XFA55MBUTKT78CDDADF7WR.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Metal-2C342034SBHOXB1BUG6UIEHDM.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/launch-ABU3JMDSA339DO5ZBX4RPSVEG.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os-89MP64T7A74H7VF0KTU4BHESG.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreLocation-99TH91PC6KJYJGBP0TVRXHPA.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreFoundation-2PR0OMF4ZTYWUGGYS2CY4HPJT.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/QuartzCore-6HEO34F4ZEXSQ5NG69Y23RZXY.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation1-5EZC9FHDFZ7HAI9EHBI2MV1BR.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Symbols-8S0BTQE6NS9QJ3HRVRXBLBU2V.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ActivityKit-B6JTBWMCTG6K9R6V4PE7CKKS6.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOKit-F5F5ODW4DSD41Q3JM0E8MZLJ1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreVideo-AWAC73HBYSPGR0N7H4B0NSZSX.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libkern-5B8OAVTYDEMF6NXMAPMWTIAGM.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_object-5E6CN88B4TMRB8G5ROZCZY782.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftShims-PY4UQCX8QJKF7H3G17W2KCHF.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreTransferable-C3ROMGDCD8J7VEFH9DHXP9QRT.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ExtensionFoundation-ENPVA2IUMJBMFN1UZR3TAHR.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/sys_types-CLLOD20FLVIQWXZTZPLX1Z8UL.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/MachO-DFVWUT30D5E4SSISRYN0205EA.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUICore-B25ZS3S10N2Q6EYRX181UVUVI.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CFNetwork-9K3RY25166XE3TJJZ6JFVABJX.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOSurface-A6Q69ZGPBMXX8AMA0UPJ51RNI.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/dnssd-C0ZGDKL5GLV0N14GDAOEZ3QUG.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CUPS-36K737OJSFSVNJJLUQAYIS4K.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DataDetection-C7GVA7F8NTD2BOEM2CO16MX3N.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Spatial-NEU9K1CLXP19V5ZD06QN8I0B.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Intents-EKH0ZYBROAEMOZG964ME9NFR7.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreGraphics-8WNF90T604JREIIUGDT8DLOLP.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdbool-A6LL9NCCUALRZLRE8TQK8Q9PJ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_tgmath-96VPIO3LSBBAKZI4OOHF691MP.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/RelevanceKit-3E26KSV0KL0PDYJ1H921WC8J8.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppKit-41D2PV7QOCDB85U15RUQQCM00.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppIntents-8LXU2YWCFGKEMEOKFR9AKEOY.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OSLog-BON01F9YLVEGX2VWP3BSKLOQ1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OpenGL-3O6ZZEK334N96S9KALMCFV7C4.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation2-7E2LM03HBRKPD78TLQVH05Y73.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_SwiftConcurrencyShims-DY5KGP1E38QQ1U4DULDECZ1FL.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdint-85YVFR6UUN1LYCVS0G7WN5UW3.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation3-7I2N6MYSB3AN0XEO8U8DEGBTK.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreData-5LNTNH9DSIGG5C7WW5K6QW2YJ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ImageIO-5B5SUZ1JBPPNT14UD0U852B4Q.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DiskArbitration-BZ9FOPW5P9N21GINJYF5POI2I.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_workgroup-15EYNEH5LU5GCOQDHGQB73LIY.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/WidgetKit-7VIHRLNLG0CFGO5KN1RBYNF7R.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Network-63JY2IR1XT6PO2P8ZAP6WQEIS.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_intrinsics-CZBGLMOLDY71SKMJWSUBVY3Z8.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/simd-C12ZO2U0UIRF84SIIR8UGK7NE.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libDER-DHE7TQHJN4GWA6EY8YS5ZVQKZ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stddef-CAD5JQQ91JFW7WMYWA2H7GT92.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrcheck-AWFI8NTQB7QFQK89GLYNJBH7P.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-dependencies-1.json (in target 'IOXStatsWidgets' from project 'IOXStats')
+
+CompileSwift normal arm64 (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling Collector.swift, Layout.swift, SharedSnapshot+System.swift, SharedSnapshot.swift, Snapshot.swift, StatsWidget.swift, Views.swift (in target 'IOXStatsWidgets' from project 'IOXStats')
+
+SwiftDriver\ Compilation\ Requirements IOXStatsWidgets normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IOXStatsWidgets -O -whole-module-optimization @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -application-extension -swift-version 5 -I /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -c -num-threads 15 -Xcc -ivfsstatcache -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -sdk-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_const_extract_protocols.json -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-generated-files.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-own-target-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-all-target-headers.hmap -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets-project-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/include -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources-normal/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-Swift.h -working-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets -no-emit-module-separately-wmo
+
+SwiftMergeGeneratedHeaders /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/IOXStatsWidgets-Swift.h /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-Swift.h (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-swiftHeaderTool -arch arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-Swift.h -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/DerivedSources/IOXStatsWidgets-Swift.h
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/arm64-apple-macos.swiftdoc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftdoc (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftdoc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/arm64-apple-macos.swiftmodule /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/arm64-apple-macos.abi.json /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.abi.json (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.abi.json /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftsourceinfo (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftsourceinfo /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+Ld /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS/IOXStatsWidgets normal (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -Os -L/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -filelist /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -rpath -Xlinker @executable_path/../../../../Frameworks -Xlinker -object_path_lto -Xlinker /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_lto.o -Xlinker -dependency_info -Xlinker /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_dependency_info.dat -e _NSExtensionMain -fapplication-extension -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.swiftmodule @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets-linker-args.resp -Xlinker -no_adhoc_codesign -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS/IOXStatsWidgets
+
+ProcessProductPackaging /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/App.entitlements /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    
+    Entitlements:
+    
+    {
+    "com.apple.security.get-task-allow" = 1;
+}
+    
+    builtin-productPackagingUtility /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/App.entitlements -entitlements -format xml -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent
+
+ProcessProductPackagingDER /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent.der (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /usr/bin/derq query -f xml -i /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent.der --raw
+
+SwiftDriver IOXStats normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IOX_Stats -O -whole-module-optimization @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -c -num-threads 15 -Xcc -ivfsstatcache -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -sdk-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats_const_extract_protocols.json -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-generated-files.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-own-target-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-target-headers.hmap -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-project-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/include -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources-normal/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-Swift.h -working-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets -no-emit-module-separately-wmo
+
+ExtractAppIntentsMetadata (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name IOXStatsWidgets --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 14.0 --bundle-identifier com.saxcodez.IOXStats.Widgets --output /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/Resources --target-triple arm64-apple-macos14.0 --binary-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS/IOXStatsWidgets --dependency-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets_dependency_info.dat --stringsdata-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftFileList --metadata-file-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.DependencyMetadataFileList --static-metadata-file-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.DependencyStaticMetadataFileList --swift-const-vals-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/Objects-normal/arm64/IOXStatsWidgets.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-09-22 23:30:00.482 appintentsmetadataprocessor[12950:84783] Starting appintentsmetadataprocessor export
+2026-09-22 23:30:00.492 appintentsmetadataprocessor[12950:84783] Writing Metadata.appintents
+2026-09-22 23:30:00.492 appintentsmetadataprocessor[12950:84783] Metadata root: /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/Resources/Metadata.appintents
+
+GenerateDSYMFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex.dSYM /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS/IOXStatsWidgets (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex/Contents/MacOS/IOXStatsWidgets -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex.dSYM
+
+CodeSign /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - -o runtime --entitlements /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStatsWidgets.build/IOXStatsWidgets.appex.xcent --timestamp\=none --generate-entitlement-der /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex
+
+RegisterExecutionPolicyException /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-RegisterExecutionPolicyException /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex
+
+Touch /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex (in target 'IOXStatsWidgets' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /usr/bin/touch -c /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex
+
+SwiftDriver\ Compilation IOXStats normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IOX_Stats -O -whole-module-optimization @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -c -num-threads 15 -Xcc -ivfsstatcache -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -sdk-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats_const_extract_protocols.json -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-generated-files.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-own-target-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-target-headers.hmap -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-project-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/include -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources-normal/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-Swift.h -working-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets -no-emit-module-separately-wmo
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DeveloperToolsSupport-6F8PQVXTILQPPQDJK5RO9L2RC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdarg-7W6F4CIJ4Z1BXBZ6FLTCMJ45X.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_AvailabilityInternal-41E616OJOZG37S0HUQUAGFNHB.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdbool-8T19D82F6ZB6MTD4QYGOHZ7P1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_SwiftConcurrencyShims-F3R3VWCYB6F6G9EII6KW1I380.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stddef-D6VPTUD06J4N87NRZVJIG3TUA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrcheck-B6IJ15IMJSMRRSYU114PDGR0T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_float-AC6DW31GI7A8GOWEAJ436A1MT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftShims-5ZA85JORZ6X6Z63PQQTGLM1F1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrauth-7W5R6TF7OOWIDB40QWWD6JQRA.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ActivityKit-BMVPH9DXR30J1DXMCS816LL1G.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation1-1P5HGH4421YPKQKW70PN2JMRG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_limits-78ME365UTA7JEBXIHVWO1MVI3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation2-7Y1AW0ZEPHJGGXIV1FS7JF1YZ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ExtensionFoundation-6DXTDL6XOIDVXPCNM9DLGLVDK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdint-4W7TGWSP61AFPY4TJF3SPNE98.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_tgmath-6VIJNCF7PR2WCOKIS6GQ7KD14.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/sys_types-7YAZWIGRUP7PB5228UIVB20YC.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation3-4FVXUPZM2GZRE781EF359RWH5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_intrinsics-E2WL4Z0R72S4OGL7DD21B8CJT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libDER-32KTPKM38HSO5LQIX478WKT8L.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdatomic-AX8WIG81JWI6IY41VMEAE1DWY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OpenGL-68BK1WZV43057OISQA9PP3E9K.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_inttypes-267VVUUF9EBBCE8WAFQ7HBE4F.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Darwin-F3D3NODBJ74VAL4HNFSLBVQ1V.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/simd-B0CFE0RX1AZCSR13HVACJC5PJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/MachO-523ZVPWA1XF6SG3HGUT307GT0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libkern-EDDPA9H7UY9FKAHD637G370OV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/launch-CRTJCR2GNJOU6G4IGJ82JNUHT.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CUPS-ZFRRBEP6TRDRCRHTTI5OTU4D.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Spatial-91JW57EG26UE8Y1AN84RIFRJV.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ObjectiveC-AXHOFJOEWPBNXCWTWXOF9VROM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_object-43SKSNU0GG5KAPSEPMCIZKF6Z.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_workgroup-EA0PM83DUVSLKU830YPG97O0T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Dispatch-C9QIQVUYRE4XH6YBMJYK4564T.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreFoundation-7ZQIGQNFHIBJQCMYCQOXUTYRH.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/XPC-N9NBON3KADAO16ZO7MGFIA1I.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/dnssd-9FKMIBI82Q65JHXOMR6YUG0QD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os-BTHOND6PAHJD5Q9203JNSSUST.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Security-V71UN6P5156OSETFPPC2S1WJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CFNetwork-1JMQNYSAC5HAQTLDYF59J3K8B.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ColorSync-DJU8IGF8ERVHXU84N79KVVEPK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOKit-801174GPHNCPKD4OKI1A90DC1.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DiskArbitration-9M7Q4X4L9KATZVG8CX8RRSLEP.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreGraphics-CUCTSB08K0E5VBJYA8006RP1N.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreServices-AW8X0ITJBR830D5B6FX174EEW.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreText-1T6XO3NFSMNH7O8ZT77NGCG4E.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ImageIO-B9M7SA5TKL67EO25M1RH2N8ZM.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Foundation-50W1Q60RJK0L3BZDO75NKXQ7P.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_LocationEssentials-DIB8BM8K87KAUK5P44OE73523.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Accessibility-ENIBXZ8ADF2KIMG6LPG6WKQBK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DataDetection-7V08KNCHZR4IEMLR7ITO0TZE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/RelevanceKit-1OW1SYVWLAJ4N8E5I7514RTU5.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/WidgetKit-F19X4QATOJ7R8PNXRFZ9A1N4Q.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OSLog-DEK686XLKK1AU60MX3QT0OEQ3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ApplicationServices-5AWVSWBUOZXURBYA24A53I40P.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOSurface-1V4UTRYS7XV8BX2OGMGELTHY6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Network-AP0J3A7VS71FLF351N09MNSB8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreTransferable-6FSFQTUNSB4DFCSRHNP5FM0P6.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Symbols-AXKFANDWYQCRJPSQX33KRYUBJ.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UniformTypeIdentifiers-60PZUHP4PRY1UCLDJE9U4YO65.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppIntents-ERRAH90RDSYV6S4UE074M7HQ8.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreData-XK01O4DVCJKVB38AHQKJV1FD.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UserNotifications-D0ZBL35ZZ7CLKECABFT132I2Y.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ServiceManagement-41F1ZVONRXOTF1F3B43CFZMN3.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreLocation-3KLC71EAHU4KE2P14KUZKH7NX.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreSpotlight-282GDTTKD5T3V440XZNV0JQPK.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Metal-8YXPAMKB29P50RIEJMF8XG6XG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Intents-6V2ESR812W5M1VI4REN5BRIF0.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreVideo-42R8CZBKQU7OOP5IQQRZPJ5FE.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/QuartzCore-6AY0RF4SVZOIHBR86XUV8K0DY.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreImage-9RRHHOU9VUJR0149FXHUS2O4K.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUICore-3JMHC64DO5U1WYWH6805QNX9N.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppKit-4TLQ5IZAXEI6LJZGHFMU86ONG.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUI-BGW0F9FPBH4ZU521OPJD3YXB9.pcm
+
+SwiftCompile normal arm64 Compiling\ ContentView.swift,\ IOXStatsApp.swift,\ RefreshDriver.swift,\ SharedSnapshot.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/ContentView.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/IOXStatsApp.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/RefreshDriver.swift /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/Shared/SharedSnapshot.swift /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Metal.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/IOKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/DataDetection.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_Concurrency.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreFoundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Distributed.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Intents.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/AppIntents.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Swift.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_Builtin_float.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Spatial.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreVideo.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_DarwinFoundation3.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/System.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Darwin.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/os.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/UniformTypeIdentifiers.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Accessibility.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Observation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_AppIntents_SwiftUI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/WidgetKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_DarwinFoundation1.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/OSLog.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/ActivityKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/simd.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/SwiftUI.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreSpotlight.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreLocation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_StringProcessing.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Network.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/QuartzCore.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/DeveloperToolsSupport.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/RelevanceKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/_DarwinFoundation2.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreGraphics.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/SwiftUICore.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/AppKit.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreText.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Foundation.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/LightweightCodeRequirements.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Symbols.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreTransferable.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/ObjectiveC.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/XPC.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Combine.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreData.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/Dispatch.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/CoreImage.swiftmodule/arm64e-apple-macos.swiftmodule /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx/prebuilt-modules/26.5/ExtensionFoundation.swiftmodule/arm64e-apple-macos.swiftmodule /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os-BTHOND6PAHJD5Q9203JNSSUST.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Accessibility-ENIBXZ8ADF2KIMG6LPG6WKQBK.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UserNotifications-D0ZBL35ZZ7CLKECABFT132I2Y.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdint-4W7TGWSP61AFPY4TJF3SPNE98.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation1-1P5HGH4421YPKQKW70PN2JMRG.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CFNetwork-1JMQNYSAC5HAQTLDYF59J3K8B.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DeveloperToolsSupport-6F8PQVXTILQPPQDJK5RO9L2RC.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ApplicationServices-5AWVSWBUOZXURBYA24A53I40P.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/dnssd-9FKMIBI82Q65JHXOMR6YUG0QD.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_intrinsics-E2WL4Z0R72S4OGL7DD21B8CJT.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/simd-B0CFE0RX1AZCSR13HVACJC5PJ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ColorSync-DJU8IGF8ERVHXU84N79KVVEPK.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreGraphics-CUCTSB08K0E5VBJYA8006RP1N.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreFoundation-7ZQIGQNFHIBJQCMYCQOXUTYRH.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreLocation-3KLC71EAHU4KE2P14KUZKH7NX.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libkern-EDDPA9H7UY9FKAHD637G370OV.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreSpotlight-282GDTTKD5T3V440XZNV0JQPK.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Network-AP0J3A7VS71FLF351N09MNSB8.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppKit-4TLQ5IZAXEI6LJZGHFMU86ONG.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ObjectiveC-AXHOFJOEWPBNXCWTWXOF9VROM.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/WidgetKit-F19X4QATOJ7R8PNXRFZ9A1N4Q.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/RelevanceKit-1OW1SYVWLAJ4N8E5I7514RTU5.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUICore-3JMHC64DO5U1WYWH6805QNX9N.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_AvailabilityInternal-41E616OJOZG37S0HUQUAGFNHB.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_inttypes-267VVUUF9EBBCE8WAFQ7HBE4F.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_SwiftConcurrencyShims-F3R3VWCYB6F6G9EII6KW1I380.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreText-1T6XO3NFSMNH7O8ZT77NGCG4E.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdarg-7W6F4CIJ4Z1BXBZ6FLTCMJ45X.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ImageIO-B9M7SA5TKL67EO25M1RH2N8ZM.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DiskArbitration-9M7Q4X4L9KATZVG8CX8RRSLEP.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/libDER-32KTPKM38HSO5LQIX478WKT8L.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Metal-8YXPAMKB29P50RIEJMF8XG6XG.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ActivityKit-BMVPH9DXR30J1DXMCS816LL1G.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CUPS-ZFRRBEP6TRDRCRHTTI5OTU4D.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OSLog-DEK686XLKK1AU60MX3QT0OEQ3.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/XPC-N9NBON3KADAO16ZO7MGFIA1I.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftUI-BGW0F9FPBH4ZU521OPJD3YXB9.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/UniformTypeIdentifiers-60PZUHP4PRY1UCLDJE9U4YO65.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation3-4FVXUPZM2GZRE781EF359RWH5.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Intents-6V2ESR812W5M1VI4REN5BRIF0.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/launch-CRTJCR2GNJOU6G4IGJ82JNUHT.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_workgroup-EA0PM83DUVSLKU830YPG97O0T.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrcheck-B6IJ15IMJSMRRSYU114PDGR0T.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Symbols-AXKFANDWYQCRJPSQX33KRYUBJ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOSurface-1V4UTRYS7XV8BX2OGMGELTHY6.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreImage-9RRHHOU9VUJR0149FXHUS2O4K.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_LocationEssentials-DIB8BM8K87KAUK5P44OE73523.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Spatial-91JW57EG26UE8Y1AN84RIFRJV.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/AppIntents-ERRAH90RDSYV6S4UE074M7HQ8.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Foundation-50W1Q60RJK0L3BZDO75NKXQ7P.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Security-V71UN6P5156OSETFPPC2S1WJ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ptrauth-7W5R6TF7OOWIDB40QWWD6JQRA.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_float-AC6DW31GI7A8GOWEAJ436A1MT.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/OpenGL-68BK1WZV43057OISQA9PP3E9K.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_DarwinFoundation2-7Y1AW0ZEPHJGGXIV1FS7JF1YZ.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/SwiftShims-5ZA85JORZ6X6Z63PQQTGLM1F1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdatomic-AX8WIG81JWI6IY41VMEAE1DWY.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/os_object-43SKSNU0GG5KAPSEPMCIZKF6Z.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/IOKit-801174GPHNCPKD4OKI1A90DC1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreData-XK01O4DVCJKVB38AHQKJV1FD.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ExtensionFoundation-6DXTDL6XOIDVXPCNM9DLGLVDK.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/DataDetection-7V08KNCHZR4IEMLR7ITO0TZE.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_tgmath-6VIJNCF7PR2WCOKIS6GQ7KD14.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Darwin-F3D3NODBJ74VAL4HNFSLBVQ1V.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/ServiceManagement-41F1ZVONRXOTF1F3B43CFZMN3.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stddef-D6VPTUD06J4N87NRZVJIG3TUA.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreTransferable-6FSFQTUNSB4DFCSRHNP5FM0P6.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/sys_types-7YAZWIGRUP7PB5228UIVB20YC.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_limits-78ME365UTA7JEBXIHVWO1MVI3.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Dispatch-C9QIQVUYRE4XH6YBMJYK4564T.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreVideo-42R8CZBKQU7OOP5IQQRZPJ5FE.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/CoreServices-AW8X0ITJBR830D5B6FX174EEW.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/MachO-523ZVPWA1XF6SG3HGUT307GT0.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/_Builtin_stdbool-8T19D82F6ZB6MTD4QYGOHZ7P1.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/QuartzCore-6AY0RF4SVZOIHBR86XUV8K0DY.pcm /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-dependencies-1.json (in target 'IOXStats' from project 'IOXStats')
+
+CompileSwift normal arm64 (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ContentView.swift, IOXStatsApp.swift, RefreshDriver.swift, SharedSnapshot.swift (in target 'IOXStats' from project 'IOXStats')
+
+SwiftDriver\ Compilation\ Requirements IOXStats normal arm64 com.apple.xcode.tools.swift.compiler (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name IOX_Stats -O -whole-module-optimization @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftFileList -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -Xfrontend -serialize-debugging-options -swift-version 5 -I /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -c -num-threads 15 -Xcc -ivfsstatcache -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -sdk-module-cache-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOXStats_const_extract_protocols.json -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-generated-files.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-own-target-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-all-target-headers.hmap -Xcc -iquote -Xcc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats-project-headers.hmap -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/include -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources-normal/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/arm64 -Xcc -I/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources -emit-objc-header -emit-objc-header-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-Swift.h -working-directory /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets -no-emit-module-separately-wmo
+
+SwiftMergeGeneratedHeaders /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/IOX_Stats-Swift.h /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-Swift.h (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-swiftHeaderTool -arch arm64 /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-Swift.h -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/DerivedSources/IOX_Stats-Swift.h
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/arm64-apple-macos.swiftdoc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftdoc (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftdoc /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/arm64-apple-macos.swiftdoc
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/arm64-apple-macos.abi.json /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.abi.json (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.abi.json /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/arm64-apple-macos.abi.json
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/arm64-apple-macos.swiftmodule /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftmodule (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftmodule /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/arm64-apple-macos.swiftmodule
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftsourceinfo (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftsourceinfo /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX_Stats.swiftmodule/Project/arm64-apple-macos.swiftsourceinfo
+
+Ld /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS/IOX\ Stats normal (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -Os -L/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -L/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -F/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/EagerLinkingTBDs/Release -F/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release -filelist /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @executable_path/../Frameworks -Xlinker -object_path_lto -Xlinker /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats_lto.o -Xlinker -dependency_info -Xlinker /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/macosx -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats.swiftmodule @/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX_Stats-linker-args.resp -Xlinker -no_adhoc_codesign -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS/IOX\ Stats
+
+Copy /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns/IOXStatsWidgets.appex /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks -remove-static-executable /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOXStatsWidgets.appex /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns
+
+ProcessInfoPlistFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Info.plist /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/Info.plist (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-infoPlistUtility /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/App/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PkgInfo -expandbuildsettings -platform macosx -scanforprivacyfile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns/IOXStatsWidgets.appex -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Info.plist
+
+CopySwiftLibs /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS/IOX\ Stats --scan-folder /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Frameworks --scan-folder /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns --scan-folder /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Library/SystemExtensions --scan-folder /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Extensions --platform macosx --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os --back-deploy-swift-span
+
+ExtractAppIntentsMetadata (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name IOX_Stats --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk --xcode-version 17F113 --platform-family macOS --deployment-target 14.0 --bundle-identifier com.saxcodez.IOXStats --output /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Resources --target-triple arm64-apple-macos14.0 --binary-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS/IOX\ Stats --dependency-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats_dependency_info.dat --stringsdata-file /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftFileList --metadata-file-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.DependencyMetadataFileList --static-metadata-file-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.DependencyStaticMetadataFileList --swift-const-vals-list /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/Objects-normal/arm64/IOX\ Stats.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-09-22 23:30:02.721 appintentsmetadataprocessor[13033:85005] Starting appintentsmetadataprocessor export
+2026-09-22 23:30:02.727 appintentsmetadataprocessor[13033:85005] Extracted no relevant App Intents symbols, skipping writing output
+
+GenerateDSYMFile /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app.dSYM /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS/IOX\ Stats (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/MacOS/IOX\ Stats -o /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app.dSYM
+
+CodeSign /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - -o runtime --entitlements /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Intermediates.noindex/IOXStats.build/Release/IOXStats.build/IOX\ Stats.app.xcent --timestamp\=none --generate-entitlement-der /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app
+
+ValidateEmbeddedBinary /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns/IOXStatsWidgets.appex (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /Applications/Xcode.app/Contents/Developer/usr/bin/embeddedBinaryValidationUtility /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/PlugIns/IOXStatsWidgets.appex -signing-cert - -info-plist-path /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app/Contents/Info.plist
+
+RegisterExecutionPolicyException /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-RegisterExecutionPolicyException /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app
+
+Validate /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    builtin-validationUtility /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app -no-validate-extension -infoplist-subpath Contents/Info.plist
+
+Touch /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /usr/bin/touch -c /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app
+
+RegisterWithLaunchServices /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app (in target 'IOXStats' from project 'IOXStats')
+    cd /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets
+    /System/Library/Frameworks/CoreServices.framework/Versions/Current/Frameworks/LaunchServices.framework/Versions/Current/Support/lsregister -f -R -trusted /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX\ Stats.app
+
+** BUILD SUCCEEDED **
+
+Executable=/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX Stats.app/Contents/MacOS/IOX Stats
+Identifier=com.saxcodez.IOXStats
+Format=app bundle with Mach-O thin (arm64)
+CodeDirectory v=20500 size=694 flags=0x10002(adhoc,runtime) hashes=11+7 location=embedded
+Signature=adhoc
+Info.plist entries=21
+TeamIdentifier=not set
+Runtime Version=26.5.0
+Sealed Resources version=2 rules=13 files=1
+Internal requirements count=0 size=12
+Executable=/Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/build/Build/Products/Release/IOX Stats.app/Contents/PlugIns/IOXStatsWidgets.appex/Contents/MacOS/IOXStatsWidgets
+Identifier=com.saxcodez.IOXStats.Widgets
+Format=bundle with Mach-O thin (arm64)
+CodeDirectory v=20500 size=1118 flags=0x10002(adhoc,runtime) hashes=24+7 location=embedded
+Signature=adhoc
+Info.plist entries=21
+TeamIdentifier=not set
+Runtime Version=26.5.0
+Sealed Resources version=2 rules=13 files=2
+Internal requirements count=0 size=12
+-- installing to /Applications/IOX Stats.app
+-- registering the widget
+RESULT: the app is installed, but macOS has not listed the widget yet.
+Try: log out and in again (or restart), then look in Edit Widgets. Still missing? Send /Users/santino/Downloads/IOX_Stats_v0.8.0/macos-widgets/widget-install.log.
+     com.apple.settings-intents.TransferResetIntents(1.0)	356D4113-7C39-58CD-844B-024DE2BE34F7	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/TransferResetIntentsExtension.appex
+     com.apple.settings-intents.PrinterScannerIntents(1.0)	1AFA23C2-4E67-5605-BCF3-86DADB794197	2026-09-17 14:53:24 +0000	/System/Library/ExtensionKit/Extensions/PrinterScannerIntentsExtension.appex
+     com.apple.settings-intents.AppearanceIntents(1.0)	466F2D9E-A7CA-5B59-A4FE-837C89712F0A	2026-09-17 14:53:26 +0000	/System/Library/ExtensionKit/Extensions/AppearanceIntentsExtension.appex
+     com.apple.settings-intents.UsersGroupsIntents(1.0)	EA2B2E71-FEAF-5FD8-B567-8F1050064178	2026-09-17 14:53:24 +0000	/System/Library/ExtensionKit/Extensions/UsersGroupsIntentsExtension.appex
+     com.apple.reminders.WidgetExtension(1.0)	A395ABB2-E6EA-5C58-8C20-297D8D135ECA	2026-09-17 14:53:31 +0000	/System/Applications/Reminders.app/Contents/PlugIns/RemindersWidgetExtension.appex
+     com.apple.systempreferences.DisplaysSettingsIntents(1.0)	1DB02FA9-9115-5712-ACCB-50AE4D6B9485	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/DisplaysSettingsIntentsExtension.appex
+     com.apple.settings-intents.LockScreenIntents(1.0)	F10C483C-B7BD-544C-A85B-88F0F19A521D	2026-09-17 14:53:25 +0000	/System/Library/ExtensionKit/Extensions/LockScreenIntentsExtension.appex
+     com.microsoft.Powerpoint.widgetextension(16.113.2)	82DC27C6-9596-46D3-84A7-FB2FD811772A	2026-09-22 20:46:58 +0000	/Applications/Microsoft PowerPoint.app/Contents/PlugIns/PowerPointWidget_mac.appex
+     com.apple.iCal.CalendarWidgetExtension(1.0)	CC5D237F-F164-559B-963A-3CC049B62DC2	2026-09-17 14:53:31 +0000	/System/Applications/Calendar.app/Contents/PlugIns/CalendarWidgetExtension.appex
+     com.apple.WindowManager.controls(1)	7E3C455E-6500-5A7A-A6C4-BBFA090CE52D	2026-09-17 14:53:27 +0000	/System/Library/CoreServices/WindowManager.app/Contents/PlugIns/WindowManagerControlsExtension.appex
+     com.apple.settings-intents.mouse(1.0)	9A2C5641-FA93-5599-9043-D94FF88D9538	2026-09-17 14:53:21 +0000	/System/Library/ExtensionKit/Extensions/MouseIntentsExtension.appex
+     com.apple.tips.Widget(26.3)	DCD455CA-A48A-592C-85A5-D9151E7144A8	2026-09-17 14:53:31 +0000	/System/Applications/Tips.app/Contents/PlugIns/TipsWidgetExtension.appex
+     com.apple.batteryui.BatterySettingsIntents(1.0)	F30289AB-5562-537E-9A48-630609523850	2026-09-17 14:53:23 +0000	/System/Library/ExtensionKit/Extensions/BatterySettingsIntentsExtension.appex
+     com.apple.Safari.SafariWidgetExtension(1)	5A98B08F-1DD9-5F69-BBE3-D271ED931130	2026-09-17 14:53:31 +0000	/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app/Contents/Extensions/SafariWidgetExtension.appex
+     com.apple.AccessibilitySettingsWidgetExtension(1.0)	ADAD4B11-EB4E-5C3D-ADF0-BBD4F5EAC011	2026-09-17 14:53:20 +0000	/System/Library/ExtensionKit/Extensions/AccessibilitySettingsWidgetExtension.appex
+     com.apple.controls.display(1.0)	43291B82-4386-5993-9ABF-AA1B78545BA1	2026-09-17 14:53:26 +0000	/System/Library/CoreServices/ControlCenter.app/Contents/PlugIns/DisplayControls.appex
+     com.apple.Photos.PhotosReliveWidget(1.0)	05321237-2954-5CB4-8812-DF1BA0B967C5	2026-09-17 14:53:31 +0000	/System/Applications/Photos.app/Contents/PlugIns/PhotosReliveWidget.appex
+     com.apple.settings.SecurityPrefQADirector.SecurityPrivacyIntents(1.0)	D9FC8740-3630-5015-8261-9627B38E811E	2026-09-17 14:53:24 +0000	/System/Library/ExtensionKit/Extensions/SecurityPrivacyIntentsExtension.appex
+     com.apple.shortcuts.ShortcutLiveActivityWidget(1.0)	70F3FA0D-B500-5A93-9BA0-C0DD3AAE510D	2026-09-17 14:53:30 +0000	/System/Applications/Shortcuts.app/Contents/PlugIns/ShortcutLiveActivityWidgetExtension.appex
+     com.apple.settings-intents.DateTimeIntents(1.0)	EAD1256A-CA90-5DD8-BC35-26B1F67E0E91	2026-09-17 14:53:24 +0000	/System/Library/ExtensionKit/Extensions/DateTimeIntentsExtension.appex
+     com.apple.PeopleViewService.PeopleWidget-macOS(1.0)	4BB416C2-7208-5B07-8290-FE38289413A5	2026-09-17 14:53:26 +0000	/System/Library/CoreServices/PeopleViewService.app/Contents/PlugIns/PeopleWidget_macOSExtension.appex
+     com.apple.Notes.WidgetExtension(4.13)	9AEF7C6E-A44E-501D-A409-42CA4A4AC6F7	2026-09-17 14:53:29 +0000	/System/Applications/Notes.app/Contents/PlugIns/com.apple.Notes.WidgetExtension.appex
+     com.apple.SoftwareUpdate.SoftwareUpdateSettingsWidget(1.0)	DA430D42-B0D5-5E18-83C7-AF3AB791C241	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/SoftwareUpdateSettingsWidgetExtension.appex
+     com.apple.controls.screenshot(1.0)	2A44B169-AD2C-5D7F-BBAE-35836C2A9604	2026-09-17 14:53:30 +0000	/System/Applications/Utilities/Screenshot.app/Contents/PlugIns/ScreenshotControls.appex
+     com.apple.StartupDisk.StartupDiskWidgetExtension(1.0)	2DC66C81-72F7-589C-9EB8-36E92DB65910	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/StartupDiskWidgetExtension.appex
+     com.apple.BluetoothSettingsApp.BluetoothSettingsAppIntentsWidget(1.0)	C0647BC9-65CE-520A-BAE6-FC8C7B404326	2026-09-17 14:53:21 +0000	/System/Library/ExtensionKit/Extensions/BluetoothSettingsAppIntentsWidgetExtension.appex
+     com.apple.settings-intents.trackpad(1.0)	EE57E810-43D8-5C07-B40F-5EAA8F14EF15	2026-09-17 14:53:23 +0000	/System/Library/ExtensionKit/Extensions/TrackpadIntentsExtension.appex
+     com.apple.siri.AssistantSettingsControls(1.0)	BD58A6E6-521C-556C-8D82-E127DD3FEA8C	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/AssistantSettingsControlsExtension.appex
+     com.tokeneater.app.widget(1.0)	E8453CAC-6ACE-4A22-B1D2-28230E663976	2026-09-17 19:39:29 +0000	/Applications/TokenEater.app/Contents/PlugIns/TokenEaterWidgetExtension.appex
+     com.apple.shortcuts.ShortcutsWidget(7.0)	C35EAE12-81F4-561D-A4D1-5D5F0F9DD0AE	2026-09-17 14:53:30 +0000	/System/Applications/Shortcuts.app/Contents/PlugIns/ShortcutsWidgetExtension.appex
+     com.apple.settings-intents.WallpaperIntents(1.0)	167FF008-367A-5A08-89DF-61F5083CD3EB	2026-09-17 14:53:25 +0000	/System/Library/ExtensionKit/Extensions/WallpaperSettingsIntents.appex
+     com.apple.controlcenter.ControlCenterSettingsIntents(1.0)	60E17983-4A0A-5A2D-AECA-3E7FAD674CC5	2026-09-17 14:53:25 +0000	/System/Library/ExtensionKit/Extensions/ControlCenterSettingsIntents.appex
+     com.microsoft.teams2.widgetextension(26225.1706.5101.3140)	B9AF3A61-EEE3-49D0-82C0-5420DB77F3CA	2026-09-17 16:32:51 +0000	/Applications/Microsoft Teams.app/Contents/PlugIns/TeamsWidgetExtension.appex
+     com.apple.calculator.CalculatorWidget(11.0)	4F314A53-D8BA-56E8-A849-89B336D1E3F7	2026-09-17 14:53:31 +0000	/System/Applications/Calculator.app/Contents/PlugIns/CalculatorWidget.appex
+     com.apple.settings-intents.AirDropHandoffIntents(1.0)	F60B3C78-BBE3-5663-A1CF-0279F1F081BF	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/AirDropHandoffIntentsExtension.appex
+     com.microsoft.Word.widgetextension(16.113.2)	DFB93E25-8AC3-460B-A73C-AB5CFE4F4EDB	2026-09-22 20:47:14 +0000	/Applications/Microsoft Word.app/Contents/PlugIns/WordWidget_mac.appex
+     com.apple.dock.controls(1)	8EE82063-08E4-5305-A628-A677285DC535	2026-09-17 14:53:26 +0000	/System/Library/CoreServices/Dock.app/Contents/PlugIns/DockControls.appex
+     com.apple.Time-Machine-Settings-Intents.extension(1.0)	2BD61D40-E0A1-5CBD-B598-219D0F9A6758	2026-09-17 14:53:23 +0000	/System/Library/ExtensionKit/Extensions/TimeMachineSettingsIntents.appex
+     com.apple.notifications.NotificationsSettingsIntents(1)	25A915E8-2654-5ED7-A236-4353D462D88E	2026-09-17 14:53:25 +0000	/System/Library/ExtensionKit/Extensions/NotificationsSettingsIntents.appex
+     com.apple.Sound-Settings.SoundIntents(1.0)	2BE686CD-4E0B-5476-83E2-8A8EE5A74FB3	2026-09-17 14:53:23 +0000	/System/Library/ExtensionKit/Extensions/SoundIntentsExtension.appex
+     com.microsoft.Excel.widgetextension(16.113.2)	DBB9254E-2F2D-4DD4-BB3C-A62E1626CE2C	2026-09-22 20:46:00 +0000	/Applications/Microsoft Excel.app/Contents/PlugIns/ExcelWidget_mac.appex
+     com.apple.settings-intents.LoginItemsIntents(1.0)	B1C5F58E-EE11-518C-AC99-9828F95E56D5	2026-09-17 14:53:24 +0000	/System/Library/ExtensionKit/Extensions/LoginItemsIntentsExtension.appex
+     com.apple.printcenter.PrintCenterWidget(1.0)	AA07C765-F188-5460-A638-596CA3441189	2026-09-17 14:53:30 +0000	/System/Applications/Utilities/Print Center.app/Contents/PlugIns/PrintCenterWidgetExtension.macOS.appex
+     com.apple.settings-intents.NetworkSettingsIntents((null))	296E4FEC-77EE-57BC-88E4-2AB76A76233F	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/NetworkSettingsIntents.appex
+     com.apple.desktopsettings.DesktopSettingsIntents(1.0)	2448D722-19DC-5C5C-B2A5-1A59AC1C51D5	2026-09-17 14:53:22 +0000	/System/Library/ExtensionKit/Extensions/DesktopSettingsIntents.appex
+     com.microsoft.Outlook.CalendarWidget(16.113.2)	79E31869-DC3D-46C4-A148-3F599EA53384	2026-09-22 20:46:41 +0000	/Applications/Microsoft Outlook.app/Contents/PlugIns/CalendarWidgetExtension.appex
+     com.apple.wallpaper.agent.controls(1.0)	E8F163D0-943D-5C1A-AC7C-DD8136808147	2026-09-17 14:53:29 +0000	/System/Library/CoreServices/WallpaperAgent.app/Contents/PlugIns/WallpaperControlsExtension.appex
+ (47 plug-ins)

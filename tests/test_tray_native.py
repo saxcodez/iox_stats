@@ -38,7 +38,7 @@ class _Auto:
 
 
 def _tray(settings=None, factory=FakeNative, **kw):
-    return TrayController(settings or Settings(tray_metrics=["cpu", "temp", "ping"], tray_rotate=False),
+    return TrayController(settings or Settings(tray_metrics=["cpu", "temp", "ping"]),
                           lambda: None, lambda: None, lambda: None, autostart=_Auto(),
                           native_factory=factory, **kw)
 
@@ -56,19 +56,21 @@ def test_native_item_gets_live_text_instead_of_a_pixmap(qapp, snap):
     assert isinstance(tray.native, FakeNative) and tray.available
     assert tray.native.segments is not None                      # initial content
     tray.refresh(snap)
-    assert [s[0] for s in tray.native.segments] == ["CPU", "T", "Ping"]
+    assert [s[0] for s in tray.native.segments] == ["CPU", "T"]            # two at a time (default)
     assert "CPU 42%" in tray.native.tooltip
     tray.show()
     assert not tray.icon.isVisible()                             # the Qt icon is not used at all
 
 
 def test_native_item_follows_menu_selection(qapp, snap):
-    settings = Settings(tray_metrics=["cpu"], tray_rotate=False)
+    settings = Settings(tray_metrics=["cpu"])
     tray = _tray(settings)
     tray.metric_actions["ram"].setChecked(True)
+    assert [s[0] for s in tray.native.segments] == ["CPU", "RAM"]           # refreshed on every change
     tray.metric_actions["temp"].setChecked(True)
-    assert [s[0] for s in tray.native.segments] == ["CPU", "RAM", "T"]      # refreshed on every change
-    assert len(tray.native.segments) == 3
+    assert [s[0] for s in tray.native.segments] == ["CPU", "RAM"]           # 3rd value waits for its turn
+    tray._rotate_tick()
+    assert [s[0] for s in tray.native.segments] == ["T"]
 
 
 def test_click_opens_menu_below_the_item(qapp, monkeypatch):
