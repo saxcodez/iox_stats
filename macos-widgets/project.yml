@@ -1,0 +1,66 @@
+# XcodeGen spec: generates IOXStats.xcodeproj  (brew install xcodegen && xcodegen generate)
+# Contains: the small host app "IOX Stats" and the WidgetKit extension "IOX Stats Widgets".
+name: IOXStats
+
+options:
+  bundleIdPrefix: com.saxcodez
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.5.0"          # keep equal to iox_stats.__version__ (checked by scripts/check_version.py)
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""                # set your team in Xcode (Signing & Capabilities) or put the team ID here
+    ENABLE_HARDENED_RUNTIME: YES
+    GENERATE_INFOPLIST_FILE: NO
+
+targets:
+  IOXStats:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+        excludes:
+          - App.entitlements
+      - path: Shared
+    dependencies:
+      - target: IOXStatsWidgets
+        embed: true
+    entitlements:
+      path: App/App.entitlements
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: IOX Stats
+        LSMinimumSystemVersion: "14.0"
+        LSApplicationCategoryType: public.app-category.utilities
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.saxcodez.IOXStats
+        PRODUCT_NAME: IOX Stats
+
+  IOXStatsWidgets:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: Widget
+        excludes:
+          - Widget.entitlements
+      - path: Shared
+    entitlements:
+      path: Widget/Widget.entitlements
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: IOX Stats
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.saxcodez.IOXStats.Widgets
+        PRODUCT_NAME: IOXStatsWidgets
+        SKIP_INSTALL: YES

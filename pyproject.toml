@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "iox-stats"
+dynamic = ["version"]
+description = "System status widgets in iOS style (CPU, RAM, disk, network, ping, temperature) with menu bar / tray readouts."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = [
+    "PySide6-Essentials>=6.7",
+    "psutil>=5.9",
+    "pyobjc-framework-Cocoa>=10; sys_platform == 'darwin'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pyinstaller>=6"]
+
+[project.scripts]
+iox-stats = "iox_stats.app:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "iox_stats.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["iox_stats*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

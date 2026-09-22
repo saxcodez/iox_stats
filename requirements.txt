@@ -1,0 +1,4 @@
+PySide6-Essentials>=6.7
+psutil>=5.9
+# macOS only: real blur-behind ("glass") for the dashboard window. Optional - without it a simulated glass backdrop is used.
+pyobjc-framework-Cocoa>=10; sys_platform == "darwin"
